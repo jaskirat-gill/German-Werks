@@ -8,9 +8,9 @@ import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "German Werks",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "By Car Enthusiasts, For Car Enthusiasts",
 }
 
 const getCollectionsWithProducts = cache(

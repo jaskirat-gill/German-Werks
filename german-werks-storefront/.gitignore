@@ -55,3 +55,10 @@ dump.rdb
 /blob-report/
 /playwright/.cache/
 /playwright/.auth
+
+# next-video
+videos/*
+!videos/*.json
+!videos/*.js
+!videos/*.ts
+public/_next-video

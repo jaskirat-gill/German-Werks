@@ -1,33 +1,45 @@
-import { Github } from "@medusajs/icons"
+import { ArrrowRight } from "@medusajs/icons"
 import { Button, Heading } from "@medusajs/ui"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-const Hero = () => {
+
+const Hero = async () => {
   return (
     <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={'https://i.imgur.com/8DAUk2r.mp4'} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay Content */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6 bg-black bg-opacity-50">
         <span>
           <Heading
             level="h1"
-            className="text-3xl leading-10 text-ui-fg-base font-normal"
-          >
-            Ecommerce Starter Template
+            className="text-3xl leading-10 text-white font-normal"
+            >
+            German Werks
           </Heading>
           <Heading
             level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
-          >
-            Powered by Medusa and Next.js
+            className="text-3xl leading-10 text-white font-normal"
+            >
+            By Car Enthusiasts, For Car Enthusiasts
           </Heading>
         </span>
-        <a
-          href="https://github.com/medusajs/nextjs-starter-medusa"
-          target="_blank"
-        >
+        <LocalizedClientLink href={`/store`}>
           <Button variant="secondary">
-            View on GitHub
-            <Github />
+            Shop Now
+            <ArrrowRight />
           </Button>
-        </a>
+        </LocalizedClientLink>
       </div>
     </div>
   )
