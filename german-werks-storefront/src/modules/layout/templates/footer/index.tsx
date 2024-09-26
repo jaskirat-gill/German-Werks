@@ -122,7 +122,7 @@ export default async function Footer() {
         </div>
         <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} German Werks Store. All rights reserved.
+            © {new Date().getFullYear()} German Werks Auto Parts LTD. All rights reserved.
           </Text>
           <DeveloperTag />
         </div>

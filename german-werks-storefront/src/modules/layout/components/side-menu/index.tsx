@@ -12,7 +12,6 @@ import CountrySelect from "../country-select"
 const SideMenuItems = {
   Home: "/",
   Store: "/store",
-  Search: "/search",
   Account: "/account",
   Cart: "/cart",
 }
@@ -85,7 +84,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} German Werks Store. All rights
+                        © {new Date().getFullYear()} German Werks Autp Parts LTD. All rights
                         reserved.
                       </Text>
                     </div>
