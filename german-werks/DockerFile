@@ -37,14 +37,3 @@ RUN npm install -g @medusajs/medusa-cli
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
-# Install production dependencies
-RUN npm ci --only=production
-
-# Copy the built application from the build stage
-COPY --from=build /app/medusa ./
-
-# Expose the application port (adjust if different)
-EXPOSE 9000
-
-# Define the command to run the application
-CMD ["npm", "start"]
