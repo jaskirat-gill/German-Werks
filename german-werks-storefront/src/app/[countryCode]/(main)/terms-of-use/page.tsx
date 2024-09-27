@@ -4,7 +4,7 @@ export default function termsOfUseRoute() {
         <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
   
         <p className="mb-4">
-          Welcome to German Werks Auto Part's LTD! By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please read these terms carefully before using our services.
+          Welcome to German Werks Auto Part&apos;s LTD! By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please read these terms carefully before using our services.
         </p>
   
         <h2 className="text-2xl font-semibold mb-2">1. Acceptance of Terms</h2>
@@ -29,7 +29,7 @@ export default function termsOfUseRoute() {
   
         <h2 className="text-2xl font-semibold mb-2">5. Disclaimer of Warranties</h2>
         <p className="mb-4">
-          The website is provided on an "as-is" and "as available" basis. We make no warranties, express or implied, regarding the accuracy, reliability, or availability of the website or its content.
+          The website is provided on an &apos;as-is&apos; and &apos;as available&apos; basis. We make no warranties, express or implied, regarding the accuracy, reliability, or availability of the website or its content.
         </p>
   
         <h2 className="text-2xl font-semibold mb-2">6. Limitation of Liability</h2>

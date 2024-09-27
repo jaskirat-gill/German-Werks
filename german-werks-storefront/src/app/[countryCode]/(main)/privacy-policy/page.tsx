@@ -4,7 +4,7 @@ export default function privacyPolicyRoute() {
         <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
         
         <p className="mb-4">
-          Welcome to German Werks Auto Parts LTD's Privacy Policy. This document describes how we collect, use, and protect your personal data when you visit our website and use our services.
+          Welcome to German Werks Auto Parts LTD&apos;s Privacy Policy. This document describes how we collect, use, and protect your personal data when you visit our website and use our services.
         </p>
   
         <h2 className="text-2xl font-semibold mb-2">1. Information We Collect</h2>

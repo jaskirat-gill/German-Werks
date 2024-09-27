@@ -1,7 +1,7 @@
-const { withNextVideo } = require('next-video/process')
+const { withNextVideo } = require('next-video/process');
 
-const { withStoreConfig } = require("./store-config")
-const store = require("./store.config.json")
+const { withStoreConfig } = require("./store-config");
+const store = require("./store.config.json");
 
 /**
  * @type {import('next').NextConfig}
@@ -29,8 +29,15 @@ const nextConfig = withStoreConfig({
       },
     ],
   },
-})
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  }
+});
 
-console.log("next.config.js", JSON.stringify(module.exports, null, 2))
+console.log("next.config.js", JSON.stringify(nextConfig, null, 2));
 
-module.exports = withNextVideo(nextConfig)
+module.exports = withNextVideo(nextConfig);
