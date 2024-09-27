@@ -64,3 +64,5 @@ videos/*
 public/_next-video
 
 /cache
+
+.next
