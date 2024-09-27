@@ -28,8 +28,15 @@ const ADMIN_CORS =
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
 
-const DATABASE_URL =
-  process.env.DATABASE_URL || "postgres://localhost/medusa-starter-default";
+const DB_USERNAME = process.env.DB_USERNAME
+const DB_PASSWORD = process.env.DB_PASSWORD
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = process.env.DB_PORT
+const DB_DATABASE = process.env.DB_DATABASE
+
+const DATABASE_URL = 
+  `postgres://${DB_USERNAME}:${DB_PASSWORD}` + 
+  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 
@@ -106,6 +113,7 @@ const projectConfig = {
   product_categories: true,
   redis_url: REDIS_URL,
   worker_mode: process.env.MEDUSA_WORKER_MODE,
+  database_extra: { ssl: { rejectUnauthorized: false } },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
