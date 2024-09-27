@@ -1,13 +1,50 @@
-FROM node:latest
+# Stage 1: Build
+FROM node:18-alpine AS build
 
+# Set working directory
 WORKDIR /app/medusa
 
-COPY . .
+# Install system dependencies
+RUN apk add --no-cache python3 make g++ 
 
-RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
-
+# Install Medusa CLI globally
 RUN npm install -g @medusajs/medusa-cli
 
-RUN npm install --legacy-peer-deps
+# Copy package.json and package-lock.json first for better caching
+COPY package.json package-lock.json ./
 
-RUN npm start
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy the rest of the application code
+COPY . .
+
+# Optional: Build the application if applicable
+# RUN npm run build
+
+# Stage 2: Production
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app/medusa
+
+# Install system dependencies
+RUN apk add --no-cache python3 make g++ 
+
+# Install Medusa CLI globally
+RUN npm install -g @medusajs/medusa-cli
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install production dependencies
+RUN npm ci --only=production
+
+# Copy the built application from the build stage
+COPY --from=build /app/medusa ./
+
+# Expose the application port (adjust if different)
+EXPOSE 9000
+
+# Define the command to run the application
+CMD ["npm", "start"]
