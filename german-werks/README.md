@@ -18,6 +18,7 @@
 
 <p align="center">
   Building blocks for digital commerce
+  medusa migrations run && medusa seed --seed-file=/data/seed.json && medusa start
 </p>
 <p align="center">
   <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
