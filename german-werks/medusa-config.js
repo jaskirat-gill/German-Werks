@@ -49,7 +49,7 @@ const plugins = [
       develop: {
         open: process.env.OPEN_BROWSER !== "false",
       },
-      serve: process.env.NODE_ENV === "development",
+      serve: true,
     },
   },
   {
