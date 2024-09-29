@@ -27,7 +27,13 @@ const nextConfig = withStoreConfig({
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: true,
-  }
+  },
+  experimental: {  
+    serverComponentsExternalPackages: [  
+      "@medusajs/product",  
+      "@medusajs/pricing",  
+    ],  
+  },  
 });
 
 console.log("next.config.js", JSON.stringify(nextConfig, null, 2));
