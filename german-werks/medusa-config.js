@@ -87,12 +87,7 @@ const plugins = [
         cache_control: process.env.S3_CACHE_CONTROL,
     },
   },
-  {
-    resolve: path.resolve('src/subscribers/order-created.js'),
-  },
 
-
-  
 ];
 
 const modules = {
