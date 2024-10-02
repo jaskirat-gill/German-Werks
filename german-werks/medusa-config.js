@@ -74,7 +74,7 @@ const plugins = [
     options: {
       api_key: process.env.SENDGRID_API_KEY,
       from: process.env.SENDGRID_FROM,
-      orderPlacedBcc: "gilljaskirat04@gmail.com",
+      orderPlacedBcc: process.env.SENDGRID_BCC,
       templates: {
         order_placed_template: {
           id: process.env.SENDGRID_ORDER_PLACED_ID,
