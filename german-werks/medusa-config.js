@@ -28,9 +28,10 @@ const ADMIN_CORS =
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
 
-const DATABASE_URL = process.env.DATABASE_URL
+const DATABASE_URL = process.env.DATABASE_URL;
 
-const REDIS_URL = process.env.REDIS_URL + '?family=6' || "redis://localhost:6379";
+const REDIS_URL =
+  process.env.REDIS_URL + "?family=6" || "redis://localhost:6379";
 
 const plugins = [
   `medusa-fulfillment-manual`,
@@ -49,7 +50,7 @@ const plugins = [
       develop: {
         open: process.env.OPEN_BROWSER !== "false",
       },
-      serve: process.env.NODE_ENV === 'development',
+      serve: process.env.NODE_ENV === "development",
     },
   },
   {
@@ -59,12 +60,26 @@ const plugins = [
       webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
     },
   },
+  // {
+  //   resolve: `medusa-plugin-sendgrid`,
+  //   options: {
+  //     api_key: process.env.SENDGRID_API_KEY,
+  //     from: process.env.SENDGRID_FROM,
+  //     order_placed_template: process.env.SENDGRID_ORDER_PLACED_ID,
+  //   },
+  // },
   {
-    resolve: `medusa-plugin-sendgrid`,
+    resolve: `medusa-plugin-sendgrid-typescript`,
+    /** @type {import('medusa-plugin-sendgrid-typescript').PluginOptions} */
     options: {
       api_key: process.env.SENDGRID_API_KEY,
       from: process.env.SENDGRID_FROM,
-      order_placed_template: process.env.SENDGRID_ORDER_PLACED_ID,
+      orderPlacedBcc: "gilljaskirat04@gmail.com",
+      templates: {
+        order_placed_template: {
+          id: process.env.SENDGRID_ORDER_PLACED_ID,
+        },
+      },
     },
   },
   {
@@ -73,21 +88,20 @@ const plugins = [
       sandbox: process.env.PAYPAL_SANDBOX,
       clientId: process.env.PAYPAL_CLIENT_ID,
       clientSecret: process.env.PAYPAL_CLIENT_SECRET,
-      authWebhookId: process.env.PAYPAL_AUTH_WEBHOOK_ID || '',
+      authWebhookId: process.env.PAYPAL_AUTH_WEBHOOK_ID || "",
     },
   },
   {
     resolve: `medusa-file-s3`,
     options: {
-        s3_url: process.env.S3_URL,
-        bucket: process.env.S3_BUCKET,
-        region: process.env.S3_REGION,
-        access_key_id: process.env.S3_ACCESS_KEY_ID,
-        secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
-        cache_control: process.env.S3_CACHE_CONTROL,
+      s3_url: process.env.S3_URL,
+      bucket: process.env.S3_BUCKET,
+      region: process.env.S3_REGION,
+      access_key_id: process.env.S3_ACCESS_KEY_ID,
+      secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+      cache_control: process.env.S3_CACHE_CONTROL,
     },
   },
-
 ];
 
 const modules = {
