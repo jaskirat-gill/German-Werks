@@ -17,7 +17,7 @@ const nextConfig = withStoreConfig({
       },
       {
         protocol: "https",
-        hostname:"german-werks.s3.us-east-1.amazonaws.com", // CHANGE IF NEEDED
+        hostname:"german-werks.s3.us-east-2.amazonaws.com", // CHANGE IF NEEDED
       },
     ],
   },
