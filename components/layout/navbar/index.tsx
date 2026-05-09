@@ -27,7 +27,7 @@ export async function Navbar() {
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
             <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
+            <div className="ml-2 flex-none text-sm font-bold uppercase tracking-wider font-heading md:hidden lg:block">
               {SITE_NAME}
             </div>
           </Link>
@@ -38,7 +38,7 @@ export async function Navbar() {
                   <Link
                     href={item.path}
                     prefetch={true}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
+                    className="text-gw-muted underline-offset-4 hover:text-gw-text hover:underline"
                   >
                     {item.title}
                   </Link>
