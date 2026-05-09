@@ -1,3 +1,6 @@
+'use client';
+
+import { TiltCard } from "components/animations/tilt-card";
 import clsx from "clsx";
 import Image from "next/image";
 import Label from "../label";
@@ -17,14 +20,14 @@ export function GridTileImage({
     position?: "bottom" | "center";
   };
 } & React.ComponentProps<typeof Image>) {
-  return (
+  const content = (
     <div
       className={clsx(
-        "group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black",
+        "group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-gw-charcoal hover:border-gw-amber",
         {
           relative: label,
-          "border-2 border-blue-600": active,
-          "border-neutral-200 dark:border-neutral-800": !active,
+          "border-2 border-gw-amber": active,
+          "border-gw-charcoal": !active,
         },
       )}
     >
@@ -47,4 +50,6 @@ export function GridTileImage({
       ) : null}
     </div>
   );
+
+  return isInteractive ? <TiltCard>{content}</TiltCard> : content;
 }

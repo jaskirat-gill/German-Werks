@@ -1,3 +1,4 @@
+import { PageTransition } from "components/animations/page-transition";
 import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
@@ -42,7 +43,9 @@ export default async function RootLayout({
         <CartProvider cartPromise={cart}>
           <Navbar />
           <main>
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
             <Toaster closeButton />
             <WelcomeToast />
           </main>
