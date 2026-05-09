@@ -2,6 +2,12 @@ import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
 import { GeistSans } from "geist/font/sans";
+import { Space_Grotesk } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+});
 import { getCart } from "lib/shopify";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
@@ -31,7 +37,7 @@ export default async function RootLayout({
   const cart = getCart();
 
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en" className={`${GeistSans.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-gw-black text-gw-text selection:bg-gw-amber">
         <CartProvider cartPromise={cart}>
           <Navbar />

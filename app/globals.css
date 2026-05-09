@@ -13,6 +13,7 @@
   --color-gw-red: #CC2936;
   --color-gw-text: #F5F5F5;
   --color-gw-muted: #888888;
+  --font-heading: var(--font-space-grotesk), sans-serif;
 }
 
 @layer base {
