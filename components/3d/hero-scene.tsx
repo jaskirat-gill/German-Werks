@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Float } from '@react-three/drei';
 import { FloatingGeometry } from './floating-geometry';
@@ -49,6 +49,8 @@ function Scene() {
 
 export function HeroScene() {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [contextLost, setContextLost] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -58,15 +60,34 @@ export function HeroScene() {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  if (reducedMotion) return null;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const handleLost = (e: Event) => {
+      e.preventDefault();
+      setContextLost(true);
+    };
+    const handleRestored = () => setContextLost(false);
+
+    canvas.addEventListener('webglcontextlost', handleLost);
+    canvas.addEventListener('webglcontextrestored', handleRestored);
+    return () => {
+      canvas.removeEventListener('webglcontextlost', handleLost);
+      canvas.removeEventListener('webglcontextrestored', handleRestored);
+    };
+  }, []);
+
+  if (reducedMotion || contextLost) return null;
 
   return (
     <div className="absolute inset-0 -z-10">
       <Suspense fallback={null}>
         <Canvas
+          ref={canvasRef}
           camera={{ position: [0, 0, 6], fov: 45 }}
           dpr={[1, 1.5]}
-          gl={{ antialias: true, alpha: true }}
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
           style={{ background: 'transparent' }}
         >
           <Scene />
