@@ -1,11 +1,9 @@
-import { HeroScene } from "components/3d/hero-scene";
-import { Carousel } from "components/carousel";
-import { ThreeItemGrid } from "components/grid/three-items";
+import { MercedesHero } from "components/3d/mercedes-hero";
 import Footer from "components/layout/footer";
 
 export const metadata = {
   description:
-    "High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
+    "Premium aftermarket carbon fiber and performance automotive parts. By Car Enthusiasts. For Car Enthusiasts.",
   openGraph: {
     type: "website",
   },
@@ -13,11 +11,9 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen">
-      <HeroScene />
-      <ThreeItemGrid />
-      <Carousel />
+    <>
+      <MercedesHero />
       <Footer />
-    </div>
+    </>
   );
 }
