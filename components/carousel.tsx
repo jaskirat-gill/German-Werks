@@ -4,7 +4,7 @@ import { GridTileImage } from "./grid/tile";
 
 export async function Carousel() {
   const products = await getCollectionProducts({
-    collection: "body",
+    collection: "hidden-homepage-carousel",
   });
 
   if (!products?.length) return null;

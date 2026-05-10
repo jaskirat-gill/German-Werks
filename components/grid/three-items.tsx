@@ -50,7 +50,7 @@ function ThreeItemGridItem({
 
 export async function ThreeItemGrid() {
   const homepageItems = await getCollectionProducts({
-    collection: "carbon",
+    collection: "hidden-homepage-featured-items",
   });
 
   if (!homepageItems.length) return null;
