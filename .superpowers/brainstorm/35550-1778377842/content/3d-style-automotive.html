@@ -1,0 +1,118 @@
+<h2>3D Scene Style — Automotive Direction</h2>
+<p class="subtitle">More car-inspired. Which of these feels like GermanWerks?</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: radial-gradient(ellipse at 50% 80%, #111 0%, #0A0A0A 100%); height: 280px; display: flex; align-items: flex-end; justify-content: center; position: relative; overflow: hidden;">
+        <!-- Road/ground plane -->
+        <div style="position: absolute; bottom: 0; width: 100%; height: 45%; background: linear-gradient(180deg, transparent 0%, #0F0F0F 30%, #141414 100%);"></div>
+        <!-- Center line -->
+        <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 40%; background: linear-gradient(0deg, #D4920B66, transparent);"></div>
+        <!-- Speed lines -->
+        <div style="position: absolute; bottom: 15%; left: 15%; width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C0C0C022, transparent); transform: perspective(200px) rotateY(-10deg);"></div>
+        <div style="position: absolute; bottom: 25%; right: 15%; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C0C0C018, transparent); transform: perspective(200px) rotateY(10deg);"></div>
+        <div style="position: absolute; bottom: 10%; left: 25%; width: 100px; height: 1px; background: linear-gradient(90deg, transparent, #D4920B11, transparent);"></div>
+        <!-- Car silhouette -->
+        <div style="position: relative; bottom: 20px; z-index: 2;">
+          <svg width="220" height="80" viewBox="0 0 220 80" fill="none" style="opacity: 0.7;">
+            <path d="M20 60 L40 60 L50 35 L80 20 L160 20 L185 35 L195 60 L210 60" stroke="#C0C0C044" stroke-width="1.5" fill="none"/>
+            <ellipse cx="60" cy="62" rx="14" ry="14" stroke="#C0C0C033" stroke-width="1" fill="none"/>
+            <ellipse cx="175" cy="62" rx="14" ry="14" stroke="#C0C0C033" stroke-width="1" fill="none"/>
+            <!-- Headlight glow -->
+            <circle cx="195" cy="45" r="3" fill="#D4920B33"/>
+            <circle cx="195" cy="45" r="8" fill="#D4920B11"/>
+          </svg>
+        </div>
+        <!-- Ambient glow -->
+        <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 300px; height: 60px; background: radial-gradient(ellipse, #D4920B08 0%, transparent 70%);"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A: Wireframe Car Silhouette</h3>
+      <p>A ghostly wireframe car outline emerges from darkness with amber headlight glow and subtle speed lines. Unmistakably automotive. The silhouette slowly rotates in 3D.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: radial-gradient(ellipse at center, #111 0%, #0A0A0A 100%); height: 280px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <!-- Carbon fiber background texture -->
+        <div style="position: absolute; inset: 0; opacity: 0.08;">
+          <div style="width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 3px, #555 3px, #555 4px), repeating-linear-gradient(-45deg, transparent, transparent 3px, #555 3px, #555 4px);"></div>
+        </div>
+        <!-- Exploded car part -->
+        <div style="position: relative; display: flex; gap: 20px; align-items: center;">
+          <!-- Hood shape -->
+          <div style="width: 100px; height: 70px; background: linear-gradient(135deg, #333 0%, #222 50%, #1A1A1A 100%); border-radius: 8px 8px 2px 2px; transform: perspective(300px) rotateX(15deg) rotateY(-10deg); box-shadow: 0 4px 20px #00000066; border: 1px solid #44444433; position: relative;">
+            <div style="position: absolute; inset: 2px; opacity: 0.2; background: repeating-linear-gradient(45deg, transparent, transparent 2px, #666 2px, #666 3px), repeating-linear-gradient(-45deg, transparent, transparent 2px, #666 2px, #666 3px); border-radius: 6px;"></div>
+            <div style="position: absolute; top: 4px; left: 4px; font-size: 8px; color: #D4920B; letter-spacing: 1px;">CF HOOD</div>
+          </div>
+          <!-- Connector lines -->
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="width: 40px; height: 1px; background: linear-gradient(90deg, #D4920B44, #D4920B11);"></div>
+            <div style="width: 30px; height: 1px; background: linear-gradient(90deg, #C0C0C033, #C0C0C011); margin-left: 5px;"></div>
+            <div style="width: 35px; height: 1px; background: linear-gradient(90deg, #D4920B33, #D4920B11); margin-left: 2px;"></div>
+          </div>
+          <!-- Side skirt shape -->
+          <div style="width: 80px; height: 25px; background: linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 100%); border-radius: 4px; transform: perspective(300px) rotateX(5deg) rotateY(8deg); box-shadow: 0 2px 15px #00000066; border: 1px solid #44444433; position: relative;">
+            <div style="position: absolute; inset: 2px; opacity: 0.15; background: repeating-linear-gradient(45deg, transparent, transparent 2px, #666 2px, #666 3px), repeating-linear-gradient(-45deg, transparent, transparent 2px, #666 2px, #666 3px); border-radius: 2px;"></div>
+          </div>
+        </div>
+        <!-- Floating specs -->
+        <div style="position: absolute; bottom: 20px; left: 20px; font-size: 9px; color: #88888844; font-family: monospace;">
+          MATERIAL: DRY CARBON FIBER<br/>
+          WEAVE: 3K TWILL<br/>
+          WEIGHT: -15 LBS
+        </div>
+        <div style="position: absolute; top: 20px; right: 20px; font-size: 9px; color: #D4920B33; font-family: monospace; text-align: right;">
+          UV RESISTANT<br/>
+          CLEAR COAT<br/>
+          OEM FIT
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B: Exploded Parts View</h3>
+      <p>Floating carbon fiber parts with technical annotations — like a 3D blueprint. Parts slowly orbit and reassemble. Shows exactly what you sell in the most dramatic way.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: radial-gradient(ellipse at 30% 40%, #151515 0%, #0A0A0A 100%); height: 280px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <!-- Tunnel / road perspective -->
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+          <!-- Converging lines -->
+          <div style="position: absolute; width: 100%; height: 100%;">
+            <div style="position: absolute; top: 50%; left: 50%; width: 400px; height: 400px; transform: translate(-50%, -50%);">
+              <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 200px; background: linear-gradient(180deg, #C0C0C022, transparent); transform-origin: bottom; transform: rotate(-30deg);"></div>
+              <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 200px; background: linear-gradient(180deg, #C0C0C018, transparent); transform-origin: bottom; transform: rotate(-15deg);"></div>
+              <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 200px; background: linear-gradient(180deg, #D4920B15, transparent); transform-origin: bottom; transform: rotate(0deg);"></div>
+              <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 200px; background: linear-gradient(180deg, #C0C0C018, transparent); transform-origin: bottom; transform: rotate(15deg);"></div>
+              <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 200px; background: linear-gradient(180deg, #C0C0C022, transparent); transform-origin: bottom; transform: rotate(30deg);"></div>
+            </div>
+          </div>
+          <!-- Central vanishing point glow -->
+          <div style="width: 8px; height: 8px; background: #D4920B; border-radius: 50%; box-shadow: 0 0 30px #D4920B44, 0 0 60px #D4920B22, 0 0 100px #D4920B11;"></div>
+        </div>
+        <!-- Speed particles -->
+        <div style="position: absolute; width: 2px; height: 20px; background: linear-gradient(180deg, #C0C0C033, transparent); top: 30%; left: 25%; transform: rotate(30deg);"></div>
+        <div style="position: absolute; width: 2px; height: 15px; background: linear-gradient(180deg, #C0C0C022, transparent); top: 40%; right: 30%; transform: rotate(-25deg);"></div>
+        <div style="position: absolute; width: 2px; height: 25px; background: linear-gradient(180deg, #D4920B22, transparent); top: 55%; left: 35%; transform: rotate(20deg);"></div>
+        <!-- Speedometer feel -->
+        <div style="position: absolute; bottom: 20px; right: 20px;">
+          <svg width="60" height="35" viewBox="0 0 60 35">
+            <path d="M5 30 A25 25 0 0 1 55 30" stroke="#33333366" stroke-width="2" fill="none"/>
+            <path d="M5 30 A25 25 0 0 1 45 8" stroke="#D4920B44" stroke-width="2" fill="none"/>
+            <line x1="30" y1="30" x2="42" y2="12" stroke="#D4920B66" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C: Tunnel / Speed Lines</h3>
+      <p>Converging perspective lines into a vanishing point with an amber glow — like driving through a tunnel at speed. Kinetic energy, forward motion, performance.</p>
+    </div>
+  </div>
+</div>

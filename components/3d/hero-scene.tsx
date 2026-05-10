@@ -10,7 +10,7 @@ function Scene() {
     <>
       <ambientLight intensity={0.4} />
       <directionalLight position={[5, 5, 5]} intensity={1} color="#E8E8E8" />
-      <pointLight position={[-5, 3, -5]} intensity={0.8} color="#D4920B" />
+      <pointLight position={[-5, 3, -5]} intensity={0.8} color="#CC2936" />
       <pointLight position={[4, -2, 3]} intensity={0.4} color="#C0C0C0" />
 
       <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>

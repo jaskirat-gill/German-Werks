@@ -1,0 +1,8 @@
+{"type":"server-started","port":59888,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59888","screen_dir":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content","state_dir":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/state"}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/hero-layout.html"}
+{"source":"user-event","type":"click","text":"BY CAR ENTHUSIASTS. FOR CAR ENTHUSIASTS.\n          GERMANWERKS\n          Premium Carbon Fiber & Performance Parts\n          SHOP NOW\n        \n      \n    \n    \n      A: Full-Screen 3D Hero\n      Immersive viewport-height hero with 3D floating geometry behind centered branding. Products appear below the fold. Maximum drama.","choice":"a","id":null,"timestamp":1778377928942}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/3d-style.html"}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/3d-style-automotive.html"}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/3d-mercedes.html"}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/3d-mercedes-red.html"}
+{"type":"screen-added","file":"/Users/jaskiratgill/repos/GermanWerks/.superpowers/brainstorm/35550-1778377842/content/waiting.html"}

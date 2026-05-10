@@ -1,0 +1,156 @@
+<h2>Mercedes Wireframe Hero — Refined</h2>
+<p class="subtitle">AMG GT-inspired silhouette. Does this feel right?</p>
+
+<div style="background: radial-gradient(ellipse at 50% 75%, #111 0%, #0A0A0A 100%); border-radius: 12px; padding: 40px 20px; margin: 20px 0; position: relative; overflow: hidden; min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+  <!-- Subtle ground reflection -->
+  <div style="position: absolute; bottom: 0; width: 100%; height: 50%; background: linear-gradient(180deg, transparent 0%, #0D0D0D 40%, #131313 100%);"></div>
+
+  <!-- Ground line -->
+  <div style="position: absolute; bottom: 28%; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, #33333366, transparent);"></div>
+
+  <!-- Speed lines left -->
+  <div style="position: absolute; bottom: 38%; left: 5%; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C0C0C015); animation: speedL 3s ease-in-out infinite;"></div>
+  <div style="position: absolute; bottom: 42%; left: 8%; width: 40px; height: 1px; background: linear-gradient(90deg, transparent, #C0C0C010); animation: speedL 3s ease-in-out 0.5s infinite;"></div>
+  <div style="position: absolute; bottom: 34%; left: 3%; width: 50px; height: 1px; background: linear-gradient(90deg, transparent, #D4920B08); animation: speedL 3s ease-in-out 1s infinite;"></div>
+
+  <!-- Speed lines right -->
+  <div style="position: absolute; bottom: 40%; right: 5%; width: 50px; height: 1px; background: linear-gradient(270deg, transparent, #C0C0C012); animation: speedR 3s ease-in-out 0.3s infinite;"></div>
+  <div style="position: absolute; bottom: 36%; right: 8%; width: 35px; height: 1px; background: linear-gradient(270deg, transparent, #C0C0C008); animation: speedR 3s ease-in-out 0.8s infinite;"></div>
+
+  <!-- Mercedes AMG GT silhouette -->
+  <div style="position: relative; z-index: 2; margin-bottom: 20px;">
+    <svg width="440" height="160" viewBox="0 0 440 160" fill="none" style="filter: drop-shadow(0 0 20px #00000066);">
+      <!-- Main body outline - AMG GT proportions: long hood, short cabin, fastback rear -->
+      <path d="
+        M 40 120
+        L 55 120
+        L 62 105
+        L 70 85
+        L 90 68
+        L 130 55
+        L 165 48
+        L 195 44
+        L 220 42
+        L 260 42
+        L 285 44
+        L 310 50
+        L 335 58
+        L 350 68
+        L 360 80
+        L 370 95
+        L 380 105
+        L 388 120
+        L 400 120
+      " stroke="#C0C0C055" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Hood line detail -->
+      <path d="M 90 68 L 195 55" stroke="#C0C0C022" stroke-width="0.75" fill="none"/>
+
+      <!-- Roof line accent -->
+      <path d="M 220 42 L 285 44 L 335 58" stroke="#C0C0C033" stroke-width="0.75" fill="none"/>
+
+      <!-- Window / cabin outline -->
+      <path d="
+        M 195 55
+        L 210 44
+        L 260 42
+        L 300 46
+        L 330 56
+        L 340 65
+        L 195 55
+      " stroke="#C0C0C033" stroke-width="0.75" fill="#C0C0C008"/>
+
+      <!-- A-pillar -->
+      <path d="M 195 55 L 200 68" stroke="#C0C0C033" stroke-width="0.75"/>
+
+      <!-- B-pillar -->
+      <path d="M 300 46 L 310 68" stroke="#C0C0C033" stroke-width="0.75"/>
+
+      <!-- Door line -->
+      <path d="M 250 44 L 255 105" stroke="#C0C0C018" stroke-width="0.5"/>
+
+      <!-- Side skirt / lower body line -->
+      <path d="M 75 110 L 375 110" stroke="#C0C0C022" stroke-width="0.75"/>
+
+      <!-- Front wheel arch -->
+      <path d="M 85 120 A 28 28 0 0 1 141 120" stroke="#C0C0C044" stroke-width="1.25" fill="none"/>
+      <!-- Front wheel -->
+      <circle cx="113" cy="122" r="22" stroke="#C0C0C033" stroke-width="1" fill="none"/>
+      <circle cx="113" cy="122" r="14" stroke="#C0C0C022" stroke-width="0.5" fill="none"/>
+      <circle cx="113" cy="122" r="5" fill="#C0C0C015"/>
+      <!-- Wheel spokes -->
+      <line x1="113" y1="108" x2="113" y2="136" stroke="#C0C0C015" stroke-width="0.5"/>
+      <line x1="99" y1="122" x2="127" y2="122" stroke="#C0C0C015" stroke-width="0.5"/>
+      <line x1="103" y1="112" x2="123" y2="132" stroke="#C0C0C012" stroke-width="0.5"/>
+      <line x1="103" y1="132" x2="123" y2="112" stroke="#C0C0C012" stroke-width="0.5"/>
+
+      <!-- Rear wheel arch -->
+      <path d="M 310 120 A 28 28 0 0 1 366 120" stroke="#C0C0C044" stroke-width="1.25" fill="none"/>
+      <!-- Rear wheel -->
+      <circle cx="338" cy="122" r="22" stroke="#C0C0C033" stroke-width="1" fill="none"/>
+      <circle cx="338" cy="122" r="14" stroke="#C0C0C022" stroke-width="0.5" fill="none"/>
+      <circle cx="338" cy="122" r="5" fill="#C0C0C015"/>
+      <!-- Wheel spokes -->
+      <line x1="338" y1="108" x2="338" y2="136" stroke="#C0C0C015" stroke-width="0.5"/>
+      <line x1="324" y1="122" x2="352" y2="122" stroke="#C0C0C015" stroke-width="0.5"/>
+      <line x1="328" y1="112" x2="348" y2="132" stroke="#C0C0C012" stroke-width="0.5"/>
+      <line x1="328" y1="132" x2="348" y2="112" stroke="#C0C0C012" stroke-width="0.5"/>
+
+      <!-- Headlight -->
+      <path d="M 68 82 L 60 95 L 72 92 Z" fill="#D4920B22" stroke="#D4920B44" stroke-width="0.75"/>
+      <!-- Headlight glow -->
+      <circle cx="65" cy="88" r="12" fill="#D4920B08"/>
+      <circle cx="65" cy="88" r="25" fill="#D4920B04"/>
+
+      <!-- Taillight -->
+      <path d="M 382 95 L 390 108 L 378 108 Z" fill="#CC293622" stroke="#CC293644" stroke-width="0.75"/>
+      <!-- Taillight glow -->
+      <circle cx="384" cy="102" r="8" fill="#CC293608"/>
+
+      <!-- Mercedes star (on grille area) -->
+      <circle cx="62" cy="95" r="6" stroke="#C0C0C033" stroke-width="0.5" fill="none"/>
+      <line x1="62" y1="90" x2="62" y2="100" stroke="#C0C0C025" stroke-width="0.5"/>
+      <line x1="57" y1="97.5" x2="67" y2="92.5" stroke="#C0C0C025" stroke-width="0.5"/>
+      <line x1="57" y1="92.5" x2="67" y2="97.5" stroke="#C0C0C025" stroke-width="0.5"/>
+
+      <!-- Exhaust tips -->
+      <ellipse cx="392" cy="118" rx="4" ry="3" stroke="#C0C0C022" stroke-width="0.5" fill="none"/>
+      <ellipse cx="400" cy="118" rx="4" ry="3" stroke="#C0C0C022" stroke-width="0.5" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Reflection of the car (mirrored, faded) -->
+  <div style="position: relative; z-index: 1; opacity: 0.15; transform: scaleY(-0.4) scaleX(0.9); margin-top: -30px; filter: blur(2px);">
+    <svg width="440" height="160" viewBox="0 0 440 160" fill="none">
+      <path d="M 40 120 L 55 120 L 62 105 L 70 85 L 90 68 L 130 55 L 165 48 L 195 44 L 220 42 L 260 42 L 285 44 L 310 50 L 335 58 L 350 68 L 360 80 L 370 95 L 380 105 L 388 120 L 400 120" stroke="#C0C0C033" stroke-width="1" fill="none"/>
+      <path d="M 85 120 A 28 28 0 0 1 141 120" stroke="#C0C0C022" stroke-width="1" fill="none"/>
+      <path d="M 310 120 A 28 28 0 0 1 366 120" stroke="#C0C0C022" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Hero text overlay -->
+  <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 3;">
+    <div style="font-size: 11px; letter-spacing: 5px; color: #D4920B; margin-bottom: 10px; font-weight: 500;">BY CAR ENTHUSIASTS. FOR CAR ENTHUSIASTS.</div>
+    <div style="font-size: 36px; font-weight: 700; color: #F5F5F5; letter-spacing: 6px;">GERMANWERKS</div>
+    <div style="font-size: 13px; color: #888; margin-top: 8px; letter-spacing: 2px;">PREMIUM CARBON FIBER & PERFORMANCE</div>
+  </div>
+
+  <!-- CTA -->
+  <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 3;">
+    <div style="display: inline-block; padding: 10px 32px; border: 1px solid #D4920B; color: #D4920B; font-size: 12px; letter-spacing: 3px; font-weight: 500; cursor: pointer; transition: all 0.3s;">SHOP NOW</div>
+  </div>
+</div>
+
+<style>
+  @keyframes speedL {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(-15px); }
+  }
+  @keyframes speedR {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(15px); }
+  }
+</style>
+
+<p class="subtitle" style="margin-top: 16px;">In 3D this will slowly rotate, with the headlights casting a warm amber glow and the wireframe catching light as it turns.</p>

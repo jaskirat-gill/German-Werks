@@ -23,10 +23,10 @@ export function GridTileImage({
   const content = (
     <div
       className={clsx(
-        "group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-gw-charcoal hover:border-gw-amber",
+        "group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-gw-charcoal hover:border-gw-accent",
         {
           relative: label,
-          "border-2 border-gw-amber": active,
+          "border-2 border-gw-accent": active,
           "border-gw-charcoal": !active,
         },
       )}

@@ -9,8 +9,7 @@
   --color-gw-dark: #111111;
   --color-gw-silver: #C0C0C0;
   --color-gw-chrome: #E8E8E8;
-  --color-gw-amber: #D4920B;
-  --color-gw-red: #CC2936;
+  --color-gw-accent: #CC2936;
   --color-gw-text: #F5F5F5;
   --color-gw-muted: #888888;
   --font-heading: var(--font-space-grotesk), sans-serif;

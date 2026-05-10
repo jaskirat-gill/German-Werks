@@ -87,8 +87,8 @@ export function VariantSelector({
                 className={clsx(
                   "flex min-w-[48px] items-center justify-center rounded-full border border-gw-charcoal bg-gw-charcoal px-2 py-1 text-sm",
                   {
-                    "cursor-default ring-2 ring-gw-amber": isActive,
-                    "ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-gw-amber":
+                    "cursor-default ring-2 ring-gw-accent": isActive,
+                    "ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-gw-accent":
                       !isActive && isAvailableForSale,
                     "relative z-10 cursor-not-allowed overflow-hidden bg-gw-charcoal text-gw-muted ring-1 ring-gw-charcoal before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-gw-charcoal before:transition-transform":
                       !isAvailableForSale,

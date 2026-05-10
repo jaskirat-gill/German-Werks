@@ -40,7 +40,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${GeistSans.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-gw-black text-gw-text selection:bg-gw-amber">
+      <body className="bg-gw-black text-gw-text selection:bg-gw-accent">
         <CartProvider cartPromise={cart}>
           <Navbar />
           <main>

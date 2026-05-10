@@ -1,0 +1,93 @@
+<h2>Homepage Hero Layout</h2>
+<p class="subtitle">How should the first thing visitors see feel? Pick the direction that fits GermanWerks.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%); padding: 24px; height: 280px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
+        <!-- 3D scene background -->
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.3;">
+          <div style="width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, #D4920B22 0%, transparent 70%);"></div>
+          <div style="position: absolute; width: 120px; height: 120px; border: 1px solid #44444466; transform: rotate(45deg); border-radius: 12px;"></div>
+          <div style="position: absolute; width: 80px; height: 80px; border: 1px solid #55555566; transform: rotate(20deg); border-radius: 50%;"></div>
+        </div>
+        <!-- Content overlay -->
+        <div style="position: relative; z-index: 1; text-align: center;">
+          <div style="font-size: 11px; letter-spacing: 4px; color: #D4920B; margin-bottom: 12px;">BY CAR ENTHUSIASTS. FOR CAR ENTHUSIASTS.</div>
+          <div style="font-size: 28px; font-weight: 700; color: #F5F5F5; margin-bottom: 8px;">GERMANWERKS</div>
+          <div style="font-size: 13px; color: #888; margin-bottom: 16px;">Premium Carbon Fiber & Performance Parts</div>
+          <div style="display: inline-block; padding: 8px 24px; border: 1px solid #D4920B; color: #D4920B; font-size: 12px; letter-spacing: 2px;">SHOP NOW</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A: Full-Screen 3D Hero</h3>
+      <p>Immersive viewport-height hero with 3D floating geometry behind centered branding. Products appear below the fold. Maximum drama.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 24px; height: 280px; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+        <!-- Split layout -->
+        <div style="display: flex; height: 100%; gap: 16px;">
+          <!-- Left: text -->
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-size: 10px; letter-spacing: 3px; color: #D4920B; margin-bottom: 8px;">NEW ARRIVAL</div>
+            <div style="font-size: 20px; font-weight: 700; color: #F5F5F5; margin-bottom: 6px;">Dry Carbon<br/>Fiber Hood</div>
+            <div style="font-size: 11px; color: #888; margin-bottom: 12px;">Alfa Romeo Giulia</div>
+            <div style="display: inline-block; padding: 6px 16px; background: #D4920B; color: #0A0A0A; font-size: 11px; font-weight: 600; width: fit-content;">VIEW PRODUCT</div>
+          </div>
+          <!-- Right: product image area -->
+          <div style="flex: 1; background: linear-gradient(135deg, #1A1A1A 0%, #111 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #333;">
+            <div style="color: #555; font-size: 11px; text-align: center;">
+              <div style="font-size: 32px; margin-bottom: 4px;">◇</div>
+              Product Image<br/>(3D rotate on hover)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B: Split Hero + Featured Product</h3>
+      <p>Left side branding/CTA, right side features a 3D-rotatable product. Gets visitors to product faster. Products grid below.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 16px; height: 280px; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+        <!-- Minimal top bar -->
+        <div style="text-align: center; margin-bottom: 12px;">
+          <div style="font-size: 10px; letter-spacing: 3px; color: #D4920B;">FLASH SALE: UP TO 50% OFF</div>
+        </div>
+        <!-- Product grid immediately -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; flex: 1;">
+          <div style="background: #1A1A1A; border-radius: 6px; grid-row: span 2; display: flex; align-items: flex-end; padding: 10px; border: 1px solid #333; position: relative;">
+            <div style="position: absolute; top: 8px; left: 8px; padding: 3px 8px; background: #D4920B; color: #0A0A0A; font-size: 9px; font-weight: 700;">FEATURED</div>
+            <div>
+              <div style="font-size: 12px; font-weight: 600; color: #F5F5F5;">Carbon Hood</div>
+              <div style="font-size: 10px; color: #888;">$2,499</div>
+            </div>
+          </div>
+          <div style="background: #1A1A1A; border-radius: 6px; display: flex; align-items: flex-end; padding: 10px; border: 1px solid #333;">
+            <div>
+              <div style="font-size: 11px; font-weight: 600; color: #F5F5F5;">Side Skirts</div>
+              <div style="font-size: 10px; color: #888;">$899</div>
+            </div>
+          </div>
+          <div style="background: #1A1A1A; border-radius: 6px; display: flex; align-items: flex-end; padding: 10px; border: 1px solid #333;">
+            <div>
+              <div style="font-size: 11px; font-weight: 600; color: #F5F5F5;">Tail Wing</div>
+              <div style="font-size: 10px; color: #888;">$1,299</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C: Product-First Grid</h3>
+      <p>No traditional hero — products ARE the hero. Big featured product + supporting grid. 3D geometry floats subtly in the background. Commerce-focused.</p>
+    </div>
+  </div>
+</div>
