@@ -49,12 +49,16 @@ function ThreeItemGridItem({
 }
 
 export async function ThreeItemGrid() {
-  // Collections that start with `hidden-*` are hidden from the search page.
   const homepageItems = await getCollectionProducts({
-    collection: "hidden-homepage-featured-items",
+    collection: "carbon",
   });
 
-  if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
+  if (!homepageItems.length) return null;
+
+  // Pad with duplicates if fewer than 3 products
+  while (homepageItems.length < 3) {
+    homepageItems.push(homepageItems[0]!);
+  }
 
   const [firstProduct, secondProduct, thirdProduct] = homepageItems;
 

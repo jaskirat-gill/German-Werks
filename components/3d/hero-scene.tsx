@@ -8,9 +8,10 @@ import { FloatingGeometry } from './floating-geometry';
 function Scene() {
   return (
     <>
-      <ambientLight intensity={0.15} />
-      <directionalLight position={[5, 5, 5]} intensity={0.4} color="#E8E8E8" />
-      <pointLight position={[-5, 3, -5]} intensity={0.3} color="#D4920B" />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[5, 5, 5]} intensity={1} color="#E8E8E8" />
+      <pointLight position={[-5, 3, -5]} intensity={0.8} color="#D4920B" />
+      <pointLight position={[4, -2, 3]} intensity={0.4} color="#C0C0C0" />
 
       <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
         <FloatingGeometry
@@ -18,7 +19,7 @@ function Scene() {
           scale={1.2}
           speed={0.8}
           distort={0.3}
-          color="#1A1A1A"
+          color="#444444"
         />
       </Float>
 
@@ -28,7 +29,7 @@ function Scene() {
           scale={0.8}
           speed={0.6}
           distort={0.4}
-          color="#2A2A2A"
+          color="#555555"
         />
       </Float>
 
@@ -38,11 +39,11 @@ function Scene() {
           scale={0.5}
           speed={1}
           distort={0.2}
-          color="#333333"
+          color="#666666"
         />
       </Float>
 
-      <Environment preset="city" environmentIntensity={0.1} />
+      <Environment preset="city" environmentIntensity={0.3} />
     </>
   );
 }
