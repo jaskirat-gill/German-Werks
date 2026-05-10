@@ -35,7 +35,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-gw-charcoal text-gw-text transition-colors md:hidden"
+        className="flex h-11 w-11 items-center justify-center rounded-md border border-[#33333366] text-gw-text transition-colors md:hidden"
       >
         <Bars3Icon className="h-4" />
       </button>
@@ -61,10 +61,10 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-gw-charcoal pb-6">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-[#111111f0] backdrop-blur-xl pb-6">
               <div className="p-4">
                 <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-gw-charcoal text-gw-text transition-colors"
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-[#33333366] text-gw-text transition-colors"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >

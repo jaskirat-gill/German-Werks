@@ -43,7 +43,7 @@ export default async function RootLayout({
       <body className="bg-gw-black text-gw-text selection:bg-gw-accent">
         <CartProvider cartPromise={cart}>
           <Navbar />
-          <main>
+          <main className="pt-20">
             <PageTransition>
               {children}
             </PageTransition>
