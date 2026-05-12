@@ -1,0 +1,96 @@
+<h2>Product Card Style</h2>
+<p class="subtitle">How should products look in the grid? These cards are the core browsing experience.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 20px; height: 300px; display: flex; align-items: center; justify-content: center;">
+        <!-- Minimal card -->
+        <div style="width: 220px; background: #111; border-radius: 8px; overflow: hidden; border: 1px solid #222;">
+          <!-- Image area -->
+          <div style="height: 160px; background: linear-gradient(135deg, #1A1A1A, #151515); display: flex; align-items: center; justify-content: center; position: relative;">
+            <div style="color: #444; font-size: 11px;">Product Image</div>
+            <!-- Subtle hover indicator -->
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #CC2936, transparent); opacity: 0.6;"></div>
+          </div>
+          <!-- Info -->
+          <div style="padding: 14px;">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 600; margin-bottom: 4px;">Carbon Fiber Hood</div>
+            <div style="font-size: 11px; color: #888;">Alfa Romeo Giulia</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <div style="font-size: 14px; color: #F5F5F5; font-weight: 700;">$2,499</div>
+              <div style="font-size: 9px; color: #CC2936; letter-spacing: 1px;">VIEW →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A: Clean Minimal</h3>
+      <p>Dark card with subtle red accent line on hover. Name, subtitle, price. No noise. Relies on product photography and the 3D tilt effect to create interest.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 20px; height: 300px; display: flex; align-items: center; justify-content: center;">
+        <!-- Glassmorphism card -->
+        <div style="width: 220px; background: linear-gradient(135deg, #1A1A1A88, #11111188); border-radius: 12px; overflow: hidden; border: 1px solid #33333366; backdrop-filter: blur(10px); position: relative;">
+          <!-- Image area -->
+          <div style="height: 160px; background: linear-gradient(135deg, #1A1A1A, #111); display: flex; align-items: center; justify-content: center; position: relative;">
+            <div style="color: #444; font-size: 11px;">Product Image</div>
+            <!-- Sale badge -->
+            <div style="position: absolute; top: 10px; left: 10px; padding: 3px 8px; background: #CC2936; color: #fff; font-size: 9px; font-weight: 700; border-radius: 4px; letter-spacing: 1px;">SALE</div>
+          </div>
+          <!-- Info with glass effect -->
+          <div style="padding: 14px; background: linear-gradient(180deg, transparent, #0A0A0A33);">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 600; margin-bottom: 4px;">Carbon Fiber Hood</div>
+            <div style="font-size: 11px; color: #888; margin-bottom: 8px;">Alfa Romeo Giulia</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="font-size: 14px; color: #F5F5F5; font-weight: 700;">$2,499</div>
+              <div style="font-size: 11px; color: #CC2936; text-decoration: line-through; opacity: 0.7;">$3,199</div>
+            </div>
+            <!-- Quick add button -->
+            <div style="margin-top: 10px; padding: 6px; text-align: center; border: 1px solid #333; border-radius: 6px; font-size: 10px; color: #888; letter-spacing: 1px;">QUICK ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B: Glass + Quick Actions</h3>
+      <p>Frosted glass effect with sale badges, compare-at pricing, and a quick-add button. More e-commerce focused — optimized for conversion.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 20px; height: 300px; display: flex; align-items: center; justify-content: center;">
+        <!-- Full-bleed card -->
+        <div style="width: 220px; height: 250px; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid #22222200;">
+          <!-- Full image background -->
+          <div style="position: absolute; inset: 0; background: linear-gradient(135deg, #1A1A1A, #111); display: flex; align-items: center; justify-content: center;">
+            <div style="color: #333; font-size: 11px;">Product Image (full bleed)</div>
+          </div>
+          <!-- Gradient overlay at bottom -->
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(180deg, transparent, #0A0A0Add);"></div>
+          <!-- Info overlaid on image -->
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 14px;">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 600; margin-bottom: 2px;">Carbon Fiber Hood</div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 11px; color: #C0C0C0;">Alfa Romeo Giulia</div>
+              <div style="font-size: 14px; color: #F5F5F5; font-weight: 700;">$2,499</div>
+            </div>
+          </div>
+          <!-- Red accent on hover (top edge) -->
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #CC2936; opacity: 0;"></div>
+          <!-- Category tag -->
+          <div style="position: absolute; top: 10px; right: 10px; padding: 3px 8px; background: #0A0A0Aaa; border: 1px solid #333; border-radius: 4px; font-size: 9px; color: #888; letter-spacing: 1px;">CARBON</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C: Full-Bleed Image</h3>
+      <p>Product image fills the entire card with text overlaid on a gradient. Maximum visual impact — lets the product photography do the talking. Category tag in corner.</p>
+    </div>
+  </div>
+</div>

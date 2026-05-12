@@ -1,8 +1,8 @@
-import { MercedesHero } from "components/3d/mercedes-hero";
-import { FeaturedSpotlight } from "components/homepage/featured-spotlight";
-import { ProductCarousel } from "components/homepage/product-carousel";
-import { TrustStats } from "components/homepage/trust-stats";
-import Footer from "components/layout/footer";
+import { HeroCard } from "components/homepage/hero-card";
+import { Marquee } from "components/homepage/marquee";
+import { Atelier } from "components/homepage/atelier";
+import { EditorialFooter } from "components/layout/editorial-footer";
+import { CatalogueChapter } from "components/homepage/catalogue-chapter";
 
 export const metadata = {
   description:
@@ -14,12 +14,23 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <>
-      <MercedesHero />
-      <FeaturedSpotlight />
-      <ProductCarousel />
-      <TrustStats />
-      <Footer />
-    </>
+    <div style={{ background: 'var(--color-gw-bone)' }}>
+      <HeroCard />
+
+      <Marquee items={["Carbon", "Performance", "Forged", "Bespoke", "OEM+", "Motorsport", "Pre-Preg", "Vancouver"]} />
+
+      {/* Chapter 02 — horizontal slide to Categories */}
+      <CatalogueChapter />
+
+      {/* Atelier flows straight in */}
+      <Atelier />
+
+      <Marquee
+        items={["Now Shipping FW26", "Installer Network", "Custom Programs", "Workshop · Vancouver"]}
+        reverse
+      />
+
+      <EditorialFooter />
+    </div>
   );
 }

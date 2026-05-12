@@ -1,0 +1,153 @@
+<h2>Below-the-Fold Sections</h2>
+<p class="subtitle">After the full-screen Mercedes hero, what do visitors scroll into? Pick the flow.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 16px; height: 320px; display: flex; flex-direction: column; gap: 8px; overflow: hidden;">
+        <!-- Mini hero indicator -->
+        <div style="text-align: center; padding: 6px; font-size: 9px; color: #333; border-bottom: 1px solid #1A1A1A;">↑ HERO ABOVE ↑</div>
+
+        <!-- Section 1: Category cards -->
+        <div style="padding: 10px 0;">
+          <div style="font-size: 9px; color: #CC2936; letter-spacing: 2px; margin-bottom: 6px;">SHOP BY CATEGORY</div>
+          <div style="display: flex; gap: 6px;">
+            <div style="flex: 1; background: #111; border-radius: 6px; padding: 12px 8px; text-align: center; border: 1px solid #222;">
+              <div style="font-size: 10px; color: #F5F5F5; font-weight: 600;">Body</div>
+              <div style="font-size: 8px; color: #555; margin-top: 2px;">12 parts</div>
+            </div>
+            <div style="flex: 1; background: #111; border-radius: 6px; padding: 12px 8px; text-align: center; border: 1px solid #222;">
+              <div style="font-size: 10px; color: #F5F5F5; font-weight: 600;">Carbon</div>
+              <div style="font-size: 8px; color: #555; margin-top: 2px;">8 parts</div>
+            </div>
+            <div style="flex: 1; background: #111; border-radius: 6px; padding: 12px 8px; text-align: center; border: 1px solid #222;">
+              <div style="font-size: 10px; color: #F5F5F5; font-weight: 600;">Performance</div>
+              <div style="font-size: 8px; color: #555; margin-top: 2px;">5 parts</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Featured products -->
+        <div style="padding: 6px 0;">
+          <div style="font-size: 9px; color: #CC2936; letter-spacing: 2px; margin-bottom: 6px;">FEATURED PRODUCTS</div>
+          <div style="display: flex; gap: 6px;">
+            <div style="flex: 1; background: #111; border-radius: 6px; height: 70px; border: 1px solid #222;"></div>
+            <div style="flex: 1; background: #111; border-radius: 6px; height: 70px; border: 1px solid #222;"></div>
+            <div style="flex: 1; background: #111; border-radius: 6px; height: 70px; border: 1px solid #222;"></div>
+          </div>
+        </div>
+
+        <!-- Section 3: Tagline banner -->
+        <div style="padding: 10px; text-align: center; border-top: 1px solid #1A1A1A;">
+          <div style="font-size: 9px; color: #888; letter-spacing: 2px;">BY CAR ENTHUSIASTS. FOR CAR ENTHUSIASTS.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A: Categories → Products → CTA</h3>
+      <p>Category cards first (so visitors can navigate by type), then featured products grid, then tagline/CTA banner. Structured, e-commerce standard. Each section reveals on scroll.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 16px; height: 320px; display: flex; flex-direction: column; gap: 6px; overflow: hidden;">
+        <!-- Mini hero indicator -->
+        <div style="text-align: center; padding: 6px; font-size: 9px; color: #333; border-bottom: 1px solid #1A1A1A;">↑ HERO ABOVE ↑</div>
+
+        <!-- Section 1: Big featured product -->
+        <div style="display: flex; gap: 8px; padding: 8px 0;">
+          <div style="flex: 1.5; background: #111; border-radius: 8px; height: 100px; border: 1px solid #222; display: flex; align-items: center; justify-content: center;">
+            <div style="font-size: 9px; color: #333;">Featured Product (large)</div>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+            <div style="font-size: 8px; color: #CC2936; letter-spacing: 1px;">NEW ARRIVAL</div>
+            <div style="font-size: 11px; color: #F5F5F5; font-weight: 700;">Dry Carbon Hood</div>
+            <div style="font-size: 9px; color: #888;">Alfa Romeo Giulia</div>
+            <div style="font-size: 11px; color: #F5F5F5; font-weight: 700; margin-top: 4px;">$2,499</div>
+            <div style="padding: 4px 10px; border: 1px solid #CC2936; color: #CC2936; font-size: 8px; width: fit-content; letter-spacing: 1px; margin-top: 4px;">SHOP NOW</div>
+          </div>
+        </div>
+
+        <!-- Section 2: Product carousel strip -->
+        <div style="padding: 6px 0;">
+          <div style="font-size: 9px; color: #888; letter-spacing: 2px; margin-bottom: 6px;">MORE PRODUCTS →</div>
+          <div style="display: flex; gap: 6px; overflow: hidden;">
+            <div style="min-width: 60px; background: #111; border-radius: 6px; height: 60px; border: 1px solid #222;"></div>
+            <div style="min-width: 60px; background: #111; border-radius: 6px; height: 60px; border: 1px solid #222;"></div>
+            <div style="min-width: 60px; background: #111; border-radius: 6px; height: 60px; border: 1px solid #222;"></div>
+            <div style="min-width: 60px; background: #111; border-radius: 6px; height: 60px; border: 1px solid #222; opacity: 0.5;"></div>
+          </div>
+        </div>
+
+        <!-- Section 3: Trust/specs strip -->
+        <div style="display: flex; gap: 12px; justify-content: center; padding: 8px; border-top: 1px solid #1A1A1A;">
+          <div style="text-align: center;">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 700;">100%</div>
+            <div style="font-size: 8px; color: #555;">DRY CARBON</div>
+          </div>
+          <div style="width: 1px; background: #222;"></div>
+          <div style="text-align: center;">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 700;">-15 LBS</div>
+            <div style="font-size: 8px; color: #555;">AVG SAVINGS</div>
+          </div>
+          <div style="width: 1px; background: #222;"></div>
+          <div style="text-align: center;">
+            <div style="font-size: 12px; color: #F5F5F5; font-weight: 700;">UV COAT</div>
+            <div style="font-size: 8px; color: #555;">PROTECTED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B: Feature Story → Carousel → Stats</h3>
+      <p>Hero product spotlight with large image + details, then a horizontal scrolling carousel of more products, then a trust/specs strip. Storytelling-driven, builds credibility.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #0A0A0A; padding: 16px; height: 320px; display: flex; flex-direction: column; gap: 6px; overflow: hidden;">
+        <!-- Mini hero indicator -->
+        <div style="text-align: center; padding: 6px; font-size: 9px; color: #333; border-bottom: 1px solid #1A1A1A;">↑ HERO ABOVE ↑</div>
+
+        <!-- Continuous product grid, no section breaks -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; padding: 8px 0; flex: 1;">
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Carbon Hood</div>
+            <div style="font-size: 8px; color: #888;">$2,499</div>
+          </div>
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Side Skirts</div>
+            <div style="font-size: 8px; color: #888;">$899</div>
+          </div>
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Tail Wing</div>
+            <div style="font-size: 8px; color: #888;">$1,299</div>
+          </div>
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Diffuser</div>
+            <div style="font-size: 8px; color: #888;">$1,099</div>
+          </div>
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Mirror Caps</div>
+            <div style="font-size: 8px; color: #888;">$349</div>
+          </div>
+          <div style="background: #111; border-radius: 6px; border: 1px solid #222; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px;">
+            <div style="font-size: 9px; color: #F5F5F5; font-weight: 600;">Trunk Lip</div>
+            <div style="font-size: 8px; color: #888;">$499</div>
+          </div>
+        </div>
+
+        <!-- Load more -->
+        <div style="text-align: center; padding: 8px; border-top: 1px solid #1A1A1A;">
+          <div style="font-size: 9px; color: #888; letter-spacing: 2px;">VIEW ALL PRODUCTS →</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C: Infinite Product Grid</h3>
+      <p>No sections — just a clean product grid that starts immediately after the hero. All products visible, minimal friction. Let the catalog speak for itself. "View all" at the bottom.</p>
+    </div>
+  </div>
+</div>

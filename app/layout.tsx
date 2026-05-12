@@ -1,19 +1,26 @@
 import { PageTransition } from "components/animations/page-transition";
 import { CartProvider } from "components/cart/cart-context";
-import { Navbar } from "components/layout/navbar";
+import { EditorialNavbar } from "components/layout/editorial-navbar";
 import { WelcomeToast } from "components/welcome-toast";
-import { GeistSans } from "geist/font/sans";
-import { Space_Grotesk } from "next/font/google";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-});
+import { Bodoni_Moda, JetBrains_Mono } from "next/font/google";
 import { getCart } from "lib/shopify";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { baseUrl } from "lib/utils";
+
+const bodoniModa = Bodoni_Moda({
+  subsets: ['latin'],
+  variable: '--font-bodoni-moda',
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '600'],
+});
 
 const { SITE_NAME } = process.env;
 
@@ -35,15 +42,14 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart();
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-gw-black text-gw-text selection:bg-gw-accent">
+    <html lang="en" className={`${bodoniModa.variable} ${jetbrainsMono.variable}`}>
+      <body>
         <CartProvider cartPromise={cart}>
-          <Navbar />
-          <main className="pt-20">
+          <EditorialNavbar />
+          <main>
             <PageTransition>
               {children}
             </PageTransition>
