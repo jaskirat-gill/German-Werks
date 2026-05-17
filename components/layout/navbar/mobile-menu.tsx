@@ -35,9 +35,10 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-[#33333366] text-gw-text transition-colors md:hidden"
+        className="flex h-10 w-10 items-center justify-center rounded-md md:hidden"
+        style={{ border: '1px solid currentColor', color: 'inherit' }}
       >
-        <Bars3Icon className="h-4" />
+        <Bars3Icon className="h-4 w-4" />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -55,45 +56,90 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
-            enterFrom="translate-x-[-100%]"
+            enterFrom="translate-x-full"
             enterTo="translate-x-0"
             leave="transition-all ease-in-out duration-200"
             leaveFrom="translate-x-0"
-            leaveTo="translate-x-[-100%]"
+            leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-[#111111f0] backdrop-blur-xl pb-6">
-              <div className="p-4">
+            <Dialog.Panel
+              className="fixed inset-0 flex h-full w-full flex-col"
+              style={{
+                background: 'var(--color-gw-ink)',
+                color: 'var(--color-gw-bone)',
+              }}
+            >
+              {/* Top row: close button */}
+              <div className="flex items-center justify-between px-5 py-4">
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '10.5px',
+                    letterSpacing: '0.22em',
+                    textTransform: 'uppercase',
+                    opacity: 0.55,
+                  }}
+                >
+                  Menu
+                </span>
                 <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-[#33333366] text-gw-text transition-colors"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
+                  className="flex h-11 w-11 items-center justify-center rounded-md"
+                  style={{ border: '1px solid rgba(239, 234, 226, 0.18)' }}
                 >
-                  <XMarkIcon className="h-6" />
+                  <XMarkIcon className="h-5 w-5" />
                 </button>
+              </div>
 
-                <div className="mb-4 w-full">
-                  <Suspense fallback={<SearchSkeleton />}>
-                    <Search />
-                  </Suspense>
-                </div>
-                {menu.length ? (
-                  <ul className="flex w-full flex-col">
-                    {menu.map((item: Menu) => (
-                      <li
-                        className="py-2 text-xl text-gw-text transition-colors hover:text-gw-muted"
-                        key={item.title}
-                      >
-                        <Link
-                          href={item.path}
-                          prefetch={true}
-                          onClick={closeMobileMenu}
-                        >
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
+              {/* Search */}
+              <div className="px-5 pb-6">
+                <Suspense fallback={<SearchSkeleton />}>
+                  <Search />
+                </Suspense>
+              </div>
+
+              {/* Links */}
+              <nav className="flex flex-1 flex-col gap-1 px-5">
+                {[
+                  { title: 'Index', path: '/' },
+                  ...menu,
+                  { title: 'Journal', path: '#' },
+                  { title: 'Contact', path: '#' },
+                ].map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.path}
+                    onClick={closeMobileMenu}
+                    className="block py-3"
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontStyle: 'italic',
+                      fontWeight: 400,
+                      fontSize: 'clamp(34px, 9vw, 52px)',
+                      lineHeight: 1.05,
+                      letterSpacing: '-0.02em',
+                      borderBottom: '1px solid rgba(239, 234, 226, 0.08)',
+                    }}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Bottom rail: location */}
+              <div
+                className="flex items-center justify-between px-5 py-6"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10.5px',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  opacity: 0.55,
+                }}
+              >
+                <span>Vancouver · BC</span>
+                <span>49.18°N · 122.92°W</span>
               </div>
             </Dialog.Panel>
           </Transition.Child>
