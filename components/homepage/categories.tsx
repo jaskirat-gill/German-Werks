@@ -109,17 +109,17 @@ export function Categories({ progress }: { progress: MotionValue<number> }) {
   const headX = useTransform(progress, [0, 0.4], [-80, 0]);
 
   return (
-    <section className="grain grain-soft relative flex h-full flex-col justify-center px-9 py-16" style={{ background: 'var(--color-gw-paper)', color: 'var(--color-gw-ink)' }}>
+    <section className="grain grain-soft relative flex h-full flex-col justify-center px-5 pb-12 pt-[120px] sm:px-7 sm:py-16 sm:pt-[120px] lg:px-9" style={{ background: 'var(--color-gw-paper)', color: 'var(--color-gw-ink)' }}>
       {/* Section head */}
       <motion.div
-        className="mb-12 grid items-end gap-[60px]"
-        style={{ gridTemplateColumns: '200px 1fr', x: headX, opacity: headOpacity }}
+        className="mb-10 grid items-end gap-6 sm:mb-12 sm:gap-[60px]"
+        style={{ gridTemplateColumns: '180px 1fr', x: headX, opacity: headOpacity }}
       >
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.6 }}>
           <span>Index — 02</span>
           <strong className="mt-1.5 block text-[13px] font-medium" style={{ opacity: 1 }}>The Catalogue</strong>
         </div>
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(48px, 7vw, 120px)', lineHeight: 0.92, letterSpacing: '-0.03em', fontWeight: 400 }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(40px, 6vw, 88px)', lineHeight: 0.94, letterSpacing: '-0.03em', fontWeight: 400 }}>
           Three pillars.{' '}
           <em style={{ fontStyle: 'italic', color: 'var(--color-gw-accent)' }}>One obsession.</em>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.12em', letterSpacing: '0.18em', textTransform: 'uppercase', verticalAlign: 'top', opacity: 0.5, display: 'inline-block', marginLeft: '0.4em', fontStyle: 'normal' }}>— 147 SKUs</span>
