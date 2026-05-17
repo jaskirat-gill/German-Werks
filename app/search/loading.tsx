@@ -1,21 +1,23 @@
-import Grid from "components/grid";
-
 export default function Loading() {
   return (
-    <>
-      <div className="mb-4 h-6" />
-      <Grid className="grid-cols-2 lg:grid-cols-3">
-        {Array(12)
-          .fill(0)
-          .map((_, index) => {
-            return (
-              <Grid.Item
-                key={index}
-                className="animate-pulse bg-neutral-100 dark:bg-neutral-800"
-              />
-            );
-          })}
-      </Grid>
-    </>
+    <section
+      className="grain grain-soft min-h-screen px-5 pb-24 pt-[120px] sm:px-7 lg:px-9"
+      style={{
+        background: 'var(--color-gw-ink)',
+      }}
+    >
+      <div className="mt-32 grid grid-cols-2 gap-5 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div
+            key={i}
+            className="animate-pulse rounded-[14px]"
+            style={{
+              aspectRatio: '3/4',
+              background: 'rgba(239, 234, 226, 0.06)',
+            }}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
