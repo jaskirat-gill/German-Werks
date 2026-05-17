@@ -13,13 +13,13 @@ export async function EditorialNavbar() {
   return (
     <nav
       className="pointer-events-none fixed inset-x-0 top-0 z-50 flex items-center justify-between px-9 py-[22px]"
-      style={{ color: 'var(--color-gw-bone)' }}
+      style={{ color: 'var(--color-gw-bone)', mixBlendMode: 'difference' }}
     >
       {/* Brand */}
       <Link href="/" prefetch={true} className="pointer-events-auto flex items-center gap-3" style={{ cursor: 'pointer' }}>
         <GWCrest size={38} />
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.22em', textTransform: 'uppercase' }}>
-          German Werks <span style={{ opacity: 0.55 }}>— Manufaktur &apos;14</span>
+          German Werks <span style={{ opacity: 0.55 }}>— Manufaktur &apos;23</span>
         </div>
       </Link>
 

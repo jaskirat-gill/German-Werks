@@ -3,7 +3,7 @@
 export function GWCrest({
   size = 76,
   spin = false,
-  label = 'GERMAN  WERKS  ·  EST.  TWENTY-FOURTEEN  ·  VANCOUVER  ·  STUTTGART  ·  ',
+  label = 'GERMAN  WERKS  ·  EST.  TWENTY-TWENTY-THREE  ·  VANCOUVER  ·  STUTTGART  ·  ',
 }: {
   size?: number;
   spin?: boolean;
@@ -49,7 +49,7 @@ export function GWCrest({
         </text>
         <line x1="-30" y1="14" x2="30" y2="14" stroke="currentColor" strokeWidth="0.8" opacity="0.7" />
         <text fontFamily="var(--font-mono)" fontSize="6.5" letterSpacing="2.4" y="26" opacity="0.85">
-          MANUFAKTUR · 014
+          MANUFAKTUR · 023
         </text>
       </g>
       {Array.from({ length: 12 }).map((_, i) => (

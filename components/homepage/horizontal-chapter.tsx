@@ -23,20 +23,20 @@ export function HorizontalChapter({
     offset: ['start start', 'end end'],
   });
 
-  const translateX = useTransform(scrollYProgress, [0, 0.35, 0.5, 1], ['0vw', '0vw', '-100vw', '-100vw']);
-  const chapterOpacity = useTransform(scrollYProgress, [0, 0.08, 0.3, 0.45], [0, 1, 1, 0]);
-  const chapterScale = useTransform(scrollYProgress, [0, 0.08, 0.35, 0.45], [0.92, 1, 1, 0.88]);
-  const titleX = useTransform(scrollYProgress, [0, 0.12, 0.35, 0.45], [160, 0, 0, -400]);
-  const subtitleX = useTransform(scrollYProgress, [0, 0.12, 0.35, 0.45], [-100, 0, 0, 250]);
-  const lineWidth = useTransform(scrollYProgress, [0.06, 0.28], ['0%', '100%']);
+  const translateX = useTransform(scrollYProgress, [0, 0.28, 0.42, 1], ['0vw', '0vw', '-100vw', '-100vw']);
+  const chapterOpacity = useTransform(scrollYProgress, [0, 0.06, 0.26, 0.4], [0, 1, 1, 0]);
+  const chapterScale = useTransform(scrollYProgress, [0, 0.06, 0.28, 0.4], [0.92, 1, 1, 0.88]);
+  const titleX = useTransform(scrollYProgress, [0, 0.1, 0.28, 0.4], [160, 0, 0, -400]);
+  const subtitleX = useTransform(scrollYProgress, [0, 0.1, 0.28, 0.4], [-100, 0, 0, 250]);
+  const lineWidth = useTransform(scrollYProgress, [0.05, 0.24], ['0%', '100%']);
 
   // Car background — drifts right like it's driving you to the content
-  const carX = useTransform(scrollYProgress, [0, 0.5], ['-10%', '15%']);
-  const carOpacity = useTransform(scrollYProgress, [0, 0.1, 0.35, 0.5], [0, 0.28, 0.32, 0]);
-  const carScale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1.15]);
+  const carX = useTransform(scrollYProgress, [0, 0.42], ['-10%', '15%']);
+  const carOpacity = useTransform(scrollYProgress, [0, 0.08, 0.28, 0.42], [0, 0.28, 0.32, 0]);
+  const carScale = useTransform(scrollYProgress, [0, 0.42], [1.05, 1.15]);
 
-  // Content: 0 = just arrived, 1 = fully settled
-  const contentProgress = useTransform(scrollYProgress, [0.48, 0.75], [0, 1]);
+  // Content: 0 = just arrived, 1 = fully settled. Starts only after slide is fully done.
+  const contentProgress = useTransform(scrollYProgress, [0.44, 0.75], [0, 1]);
 
   return (
     <div ref={containerRef} style={{ height: '250vh', position: 'relative' }}>

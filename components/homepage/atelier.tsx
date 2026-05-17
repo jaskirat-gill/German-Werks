@@ -435,7 +435,7 @@ export function Atelier() {
             },
             {
               title: 'Heritage',
-              text: 'Founded by enthusiasts in 2014. Operated by enthusiasts since. Built for the obsession we share.',
+              text: 'Founded by enthusiasts in 2023. Operated by enthusiasts since. Built for the obsession we share.',
             },
           ].map((col) => (
             <div
