@@ -43,7 +43,7 @@ export function Marquee({
   return (
     <div ref={ref} className="overflow-hidden">
       <motion.div
-        className="relative border-y py-[22px]"
+        className="relative border-y py-3 sm:py-[22px]"
         style={{
           background: 'var(--color-gw-ink)',
           color: 'var(--color-gw-bone)',
@@ -53,11 +53,11 @@ export function Marquee({
         }}
       >
         <motion.div
-          className="flex gap-16 whitespace-nowrap"
+          className="flex gap-10 whitespace-nowrap sm:gap-16"
           style={{
             animation: `marquee 38s linear infinite${reverse ? ' reverse' : ''}`,
             fontFamily: 'var(--font-serif)',
-            fontSize: 52,
+            fontSize: 'clamp(28px, 5vw, 52px)',
             fontStyle: 'italic',
             fontWeight: 400,
             letterSpacing: '-0.01em',
