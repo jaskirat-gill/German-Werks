@@ -187,7 +187,7 @@ export function HeroCard() {
           style={{
             width: 'min(1280px, 94vw)',
             height: 'min(560px, 70svh)',
-            minHeight: '480px',
+            minHeight: 'min(480px, 64svh)',
             background: 'var(--color-gw-bone)',
             boxShadow: '0 60px 120px -30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04)',
             y: cardTranslateY,
@@ -195,7 +195,7 @@ export function HeroCard() {
             opacity: cardOpacity,
           }}
         >
-        <div className="absolute inset-0 flex flex-col p-[18px_18px] sm:p-[22px_26px] lg:p-[26px_30px]">
+        <div className="absolute inset-0 flex flex-col p-[18px] sm:p-[22px_26px] lg:p-[26px_30px]">
           {/* Top bar */}
           <div className="hidden items-center justify-between sm:flex" style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-gw-ink)' }}>
             <span>By enthusiasts, for enthusiasts <sup style={{ opacity: 0.5 }}>©</sup></span>
