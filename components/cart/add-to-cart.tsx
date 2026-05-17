@@ -1,6 +1,5 @@
 "use client";
 
-import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { addItem } from "components/cart/actions";
 import { Product, ProductVariant } from "lib/shopify/types";
@@ -15,14 +14,25 @@ function SubmitButton({
   availableForSale: boolean;
   selectedVariantId: string | undefined;
 }) {
-  const buttonClasses =
-    "relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white";
-  const disabledClasses = "cursor-not-allowed opacity-60 hover:opacity-60";
+  const base =
+    'group relative flex w-full items-center justify-between rounded-md px-5 py-4 transition-all';
+  const enabled =
+    'bg-gw-bone text-gw-ink hover:bg-gw-accent hover:text-gw-bone';
+  const disabled = 'bg-gw-bone/20 text-gw-bone/40 cursor-not-allowed';
 
   if (!availableForSale) {
     return (
-      <button disabled className={clsx(buttonClasses, disabledClasses)}>
-        Out Of Stock
+      <button
+        disabled
+        className={clsx(base, disabled)}
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '11.5px',
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+        }}
+      >
+        Out of stock
       </button>
     );
   }
@@ -32,12 +42,15 @@ function SubmitButton({
       <button
         aria-label="Please select an option"
         disabled
-        className={clsx(buttonClasses, disabledClasses)}
+        className={clsx(base, disabled)}
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '11.5px',
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+        }}
       >
-        <div className="absolute left-0 ml-4">
-          <PlusIcon className="h-5" />
-        </div>
-        Add To Cart
+        Select an option
       </button>
     );
   }
@@ -45,14 +58,16 @@ function SubmitButton({
   return (
     <button
       aria-label="Add to cart"
-      className={clsx(buttonClasses, {
-        "hover:opacity-90": true,
-      })}
+      className={clsx(base, enabled)}
+      style={{
+        fontFamily: 'var(--font-mono)',
+        fontSize: '11.5px',
+        letterSpacing: '0.18em',
+        textTransform: 'uppercase',
+      }}
     >
-      <div className="absolute left-0 ml-4">
-        <PlusIcon className="h-5" />
-      </div>
-      Add To Cart
+      <span>Add to cart</span>
+      <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
     </button>
   );
 }
