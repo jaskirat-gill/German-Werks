@@ -47,18 +47,27 @@ export function VariantSelector({
 
   return options.map((option) => (
     <form key={option.id}>
-      <dl className="mb-8">
-        <dt className="mb-4 text-sm uppercase tracking-wide">{option.name}</dt>
-        <dd className="flex flex-wrap gap-3">
+      <div className="mb-6">
+        <div
+          className="mb-3"
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '10.5px',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            opacity: 0.55,
+          }}
+        >
+          {option.name}
+        </div>
+        <div className="flex flex-wrap gap-2">
           {option.values.map((value) => {
             const optionNameLowerCase = option.name.toLowerCase();
 
-            // Base option params on current searchParams so we can preserve any other param state.
             const optionParams: Record<string, string> = {};
             searchParams.forEach((v, k) => (optionParams[k] = v));
             optionParams[optionNameLowerCase] = value;
 
-            // Filter out invalid options and check if the option combination is available for sale.
             const filtered = Object.entries(optionParams).filter(
               ([key, value]) =>
                 options.find(
@@ -74,33 +83,34 @@ export function VariantSelector({
               ),
             );
 
-            // The option is active if it's in the selected options.
             const isActive = searchParams.get(optionNameLowerCase) === value;
 
             return (
               <button
+                key={option.id + value}
                 formAction={() => updateOption(optionNameLowerCase, value)}
-                key={value}
                 aria-disabled={!isAvailableForSale}
                 disabled={!isAvailableForSale}
-                title={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
+                title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
                 className={clsx(
-                  "flex min-w-[48px] items-center justify-center rounded-full border border-gw-charcoal bg-gw-charcoal px-2 py-1 text-sm",
-                  {
-                    "cursor-default ring-2 ring-gw-accent": isActive,
-                    "ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-gw-accent":
-                      !isActive && isAvailableForSale,
-                    "relative z-10 cursor-not-allowed overflow-hidden bg-gw-charcoal text-gw-muted ring-1 ring-gw-charcoal before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-gw-charcoal before:transition-transform":
-                      !isAvailableForSale,
-                  },
+                  'rounded-full px-4 py-2 transition-all',
+                  isActive && 'bg-gw-bone text-gw-ink',
+                  !isActive && isAvailableForSale && 'border border-gw-bone/40 text-gw-bone hover:border-gw-bone',
+                  !isAvailableForSale && 'cursor-not-allowed border border-gw-bone/20 text-gw-bone/35 line-through',
                 )}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                }}
               >
                 {value}
               </button>
             );
           })}
-        </dd>
-      </dl>
+        </div>
+      </div>
     </form>
   ));
 }
