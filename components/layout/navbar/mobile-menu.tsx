@@ -104,8 +104,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                 {[
                   { title: 'Index', path: '/' },
                   ...menu,
-                  { title: 'Journal', path: '#' },
-                  { title: 'Contact', path: '#' },
+                  { title: 'Catalog', path: '/search' },
                 ].map((item) => (
                   <Link
                     key={`${item.path}-${item.title}`}
