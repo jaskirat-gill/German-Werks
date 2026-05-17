@@ -1,7 +1,6 @@
 import { HeroCard } from "components/homepage/hero-card";
 import { Marquee } from "components/homepage/marquee";
 import { Atelier } from "components/homepage/atelier";
-import { EditorialFooter } from "components/layout/editorial-footer";
 import { CatalogueChapter } from "components/homepage/catalogue-chapter";
 
 export const metadata = {
@@ -29,8 +28,6 @@ export default function HomePage() {
         items={["Now Shipping FW26", "Installer Network", "Custom Programs", "Workshop · Vancouver"]}
         reverse
       />
-
-      <EditorialFooter />
     </div>
   );
 }
