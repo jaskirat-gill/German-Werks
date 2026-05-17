@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import { addItem } from "components/cart/actions";
+import Price from "components/price";
 import { Product, ProductVariant } from "lib/shopify/types";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
@@ -10,9 +11,11 @@ import { useCart } from "./cart-context";
 function SubmitButton({
   availableForSale,
   selectedVariantId,
+  price,
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
+  price: { amount: string; currencyCode: string } | undefined;
 }) {
   const base =
     'group relative flex w-full items-center justify-between rounded-md px-5 py-4 transition-all';
@@ -67,7 +70,12 @@ function SubmitButton({
       }}
     >
       <span>Add to cart</span>
-      <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+      <span aria-hidden className="flex items-center gap-3">
+        {price ? (
+          <Price amount={price.amount} currencyCode={price.currencyCode} />
+        ) : null}
+        <span className="transition-transform group-hover:translate-x-1">→</span>
+      </span>
     </button>
   );
 }
@@ -100,6 +108,7 @@ export function AddToCart({ product }: { product: Product }) {
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
+        price={finalVariant?.price}
       />
       <p aria-live="polite" className="sr-only" role="status">
         {message}

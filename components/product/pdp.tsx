@@ -31,7 +31,7 @@ export function Pdp({ product }: { product: Product }) {
           </Suspense>
         </div>
 
-        <aside className="lg:sticky lg:top-[88px] lg:self-start lg:pb-[120px]">
+        <aside className="pb-[80px] lg:sticky lg:top-[88px] lg:self-start lg:pb-[120px]">
           <Suspense fallback={null}>
             <ProductDescription product={product} />
           </Suspense>
