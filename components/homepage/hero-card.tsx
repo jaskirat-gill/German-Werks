@@ -155,7 +155,7 @@ export function HeroCard() {
   }, []);
 
   return (
-    <section className="grain relative h-screen min-h-[760px] overflow-hidden" style={{ background: 'var(--color-gw-ink)' }}>
+    <section className="grain relative overflow-hidden" style={{ background: 'var(--color-gw-ink)', minHeight: '100svh', height: '100svh' }}>
       {/* Parallax background */}
       <motion.div
         className="absolute inset-0"
@@ -183,10 +183,11 @@ export function HeroCard() {
       {/* Floating editorial card — wrapper for centering, inner for parallax */}
       <div className="absolute inset-0 z-[4] flex items-center justify-center">
         <motion.div
-          className={`overflow-hidden rounded-[22px] will-change-transform ${revealed ? 'is-revealed' : 'is-animating'}`}
+          className={`overflow-hidden rounded-[18px] sm:rounded-[22px] will-change-transform ${revealed ? 'is-revealed' : 'is-animating'}`}
           style={{
-            width: 'min(1280px, 86vw)',
-            height: 'min(560px, 62vh)',
+            width: 'min(1280px, 94vw)',
+            height: 'min(560px, 70svh)',
+            minHeight: '480px',
             background: 'var(--color-gw-bone)',
             boxShadow: '0 60px 120px -30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04)',
             y: cardTranslateY,
@@ -194,7 +195,7 @@ export function HeroCard() {
             opacity: cardOpacity,
           }}
         >
-        <div className="absolute inset-0 flex flex-col p-[22px_26px] lg:p-[26px_30px]">
+        <div className="absolute inset-0 flex flex-col p-[18px_18px] sm:p-[22px_26px] lg:p-[26px_30px]">
           {/* Top bar */}
           <div className="hidden items-center justify-between sm:flex" style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-gw-ink)' }}>
             <span>By enthusiasts, for enthusiasts <sup style={{ opacity: 0.5 }}>©</sup></span>
@@ -205,6 +206,11 @@ export function HeroCard() {
             </span>
           </div>
 
+          {/* Mobile top line */}
+          <div className="flex items-center justify-center sm:hidden" style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-gw-ink)', opacity: 0.6 }}>
+            Index / 01 — Manifest
+          </div>
+
           {/* Middle - Title + Cert plate */}
           <div className="flex flex-1 items-center gap-6 px-1.5 py-2 lg:gap-10 lg:py-3">
             <h1
@@ -212,7 +218,7 @@ export function HeroCard() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontWeight: 500,
-                fontSize: 'clamp(40px, 8vw, 160px)',
+                fontSize: 'clamp(34px, 9.5vw, 160px)',
                 lineHeight: 0.86,
                 letterSpacing: '-0.035em',
                 color: 'var(--color-gw-ink)',
@@ -262,14 +268,19 @@ export function HeroCard() {
       </motion.div>
       </div>
 
-      {/* Bottom rail */}
-      <div className="absolute bottom-9 left-9 z-[5] flex flex-col gap-1.5" style={{ color: 'var(--color-gw-bone)', fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+      {/* Bottom rails — desktop only */}
+      <div className="absolute bottom-6 left-5 z-[5] hidden flex-col gap-1.5 sm:flex sm:bottom-9 sm:left-9" style={{ color: 'var(--color-gw-bone)', fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
         <span style={{ opacity: 0.55 }}>Reel · 2026</span>
         <span>Scroll ↓</span>
       </div>
-      <div className="absolute bottom-9 right-9 z-[5] flex flex-col gap-1.5 text-right" style={{ color: 'var(--color-gw-bone)', fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+      <div className="absolute bottom-9 right-9 z-[5] hidden flex-col gap-1.5 text-right sm:flex" style={{ color: 'var(--color-gw-bone)', fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
         <span style={{ opacity: 0.55 }}>49.180° N · 122.922° W</span>
         <span>BC · 12°C · LIGHT RAIN</span>
+      </div>
+
+      {/* Mobile-only scroll cue */}
+      <div className="absolute bottom-5 left-1/2 z-[5] -translate-x-1/2 sm:hidden" style={{ color: 'var(--color-gw-bone)', fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7 }}>
+        Scroll ↓
       </div>
     </section>
   );
