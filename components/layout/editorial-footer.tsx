@@ -18,28 +18,47 @@ export function EditorialFooter() {
   const gridOpacity = useTransform(scrollYProgress, [0.2, 0.7], [0, 1]);
 
   return (
-    <footer ref={ref} className="grain grain-soft relative overflow-hidden px-9 pb-9 pt-20" style={{ background: 'var(--color-gw-ink)', color: 'var(--color-gw-bone)' }}>
+    <footer
+      ref={ref}
+      className="grain grain-soft relative overflow-hidden px-5 pb-7 pt-16 sm:px-7 sm:pt-20 lg:px-9 lg:pb-9"
+      style={{ background: 'var(--color-gw-ink)', color: 'var(--color-gw-bone)' }}
+    >
       {/* Huge brand name */}
       <motion.div
-        className="mb-[60px] whitespace-nowrap"
+        className="mb-10 sm:mb-[60px]"
         style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(120px, 18vw, 300px)',
-          lineHeight: 0.85,
-          letterSpacing: '-0.04em',
-          fontWeight: 400,
           y: brandY,
           scale: brandScale,
           opacity: brandOpacity,
           transformOrigin: 'left center',
         }}
       >
-        German <em style={{ fontStyle: 'italic', color: 'var(--color-gw-accent)' }}>Werks.</em>
+        <svg
+          viewBox="0 0 1000 200"
+          preserveAspectRatio="xMinYMid meet"
+          className="block w-full"
+          aria-label="German Werks."
+        >
+          <text
+            x="0"
+            y="160"
+            fontFamily="var(--font-serif)"
+            fontSize="200"
+            letterSpacing="-7"
+            fill="currentColor"
+            fontWeight={400}
+          >
+            German{' '}
+            <tspan fontStyle="italic" fill="var(--color-gw-accent)">
+              Werks.
+            </tspan>
+          </text>
+        </svg>
       </motion.div>
 
       {/* Grid */}
       <motion.div
-        className="grid grid-cols-1 gap-10 border-t py-10 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-8 border-t py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4"
         style={{ borderColor: 'rgba(255,255,255,0.12)', y: gridY, opacity: gridOpacity }}
       >
         <div>
