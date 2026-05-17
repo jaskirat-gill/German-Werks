@@ -36,7 +36,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
         className="flex h-10 w-10 items-center justify-center rounded-md md:hidden"
-        style={{ border: '1px solid currentColor', color: 'inherit' }}
+        style={{ border: '1px solid currentColor', color: 'var(--color-gw-bone)' }}
       >
         <Bars3Icon className="h-4 w-4" />
       </button>
@@ -108,7 +108,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   { title: 'Contact', path: '#' },
                 ].map((item) => (
                   <Link
-                    key={item.title}
+                    key={`${item.path}-${item.title}`}
                     href={item.path}
                     onClick={closeMobileMenu}
                     className="block py-3"
