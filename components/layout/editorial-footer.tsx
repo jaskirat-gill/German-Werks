@@ -34,7 +34,7 @@ export function EditorialFooter() {
         }}
       >
         <svg
-          viewBox="0 0 1000 200"
+          viewBox="0 0 1600 200"
           preserveAspectRatio="xMinYMid meet"
           className="block w-full"
           aria-label="German Werks."

@@ -256,7 +256,6 @@ export function Atelier() {
 
         {/* Title */}
         <h2
-          className="py-[60px_30px]"
           style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(48px, 11vw, 160px)',
