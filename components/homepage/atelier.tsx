@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { useScroll, useTransform, motion, useMotionValueEvent } from 'framer-motion';
+import { useScroll, useTransform, motion, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import { GWCrest } from 'components/layout/gw-crest';
 
 function WireframeCar({ progress = 0 }: { progress: number }) {
@@ -203,7 +203,10 @@ export function Atelier() {
     return () => io.disconnect();
   }, []);
 
+  const prefersReducedMotion = useReducedMotion();
+
   const reveal = Math.max(0, Math.min(1, (progress - 0.15) * 2.5));
+  const effectiveSeen = prefersReducedMotion ? true : seen;
 
   const text =
     "We don't decorate cars. We finish what the factory began. Pre-preg carbon, forged aluminium, OEM+ fitment, and the patience to wait until it's right.";
@@ -213,7 +216,7 @@ export function Atelier() {
   return (
     <section
       ref={ref}
-      className="grain relative overflow-hidden px-9 py-[160px]"
+      className="grain relative overflow-hidden px-5 py-24 sm:px-7 sm:py-32 lg:px-9 lg:py-[160px]"
       style={{
         background: 'radial-gradient(ellipse 90% 70% at 50% 40%, #1f1d1a 0%, #14130f 55%, #0a0a09 100%)',
         color: 'var(--color-gw-bone)',
@@ -238,14 +241,14 @@ export function Atelier() {
 
       <div className="relative z-[2] mx-auto max-w-[1500px]">
         {/* Head */}
-        <div className="grid items-end border-b pb-10" style={{ gridTemplateColumns: '1fr auto', borderColor: 'rgba(239, 234, 226, 0.14)' }}>
+        <div className="grid items-end gap-6 border-b pb-8 sm:gap-0 sm:pb-10" style={{ gridTemplateColumns: '1fr auto', borderColor: 'rgba(239, 234, 226, 0.14)' }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
             <span style={{ opacity: 0.6 }}>Index — 03</span>
             <strong className="mt-1.5 block text-[13px] font-medium" style={{ color: 'var(--color-gw-bone)' }}>
               The Atelier
             </strong>
           </div>
-          <div className="flex gap-10" style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <div className="hidden gap-10 sm:flex" style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             <span>Tech. drawing · E63 ref</span>
             <span style={{ opacity: 0.55 }}>{String(Math.round(progress * 100)).padStart(3, '0')} · reveal</span>
           </div>
@@ -256,18 +259,18 @@ export function Atelier() {
           className="py-[60px_30px]"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(72px, 11vw, 200px)',
+            fontSize: 'clamp(48px, 11vw, 160px)',
             lineHeight: 0.88,
             letterSpacing: '-0.035em',
             fontWeight: 400,
-            padding: '60px 0 30px',
+            padding: '40px 0 24px',
           }}
         >
           <span className="block overflow-hidden pb-[0.04em]">
             <span
               className="inline-block will-change-transform"
               style={{
-                transform: seen ? 'translateY(0)' : 'translateY(102%)',
+                transform: effectiveSeen ? 'translateY(0)' : 'translateY(102%)',
                 transition: 'transform 1s cubic-bezier(.18,.7,.2,1)',
               }}
             >
@@ -278,7 +281,7 @@ export function Atelier() {
             <span
               className="inline-block will-change-transform"
               style={{
-                transform: seen ? 'translateY(0)' : 'translateY(102%)',
+                transform: effectiveSeen ? 'translateY(0)' : 'translateY(102%)',
                 transition: 'transform 1s cubic-bezier(.18,.7,.2,1)',
                 transitionDelay: '0.12s',
               }}
@@ -291,7 +294,7 @@ export function Atelier() {
         {/* Wireframe car */}
         <motion.div
           className="mx-auto max-w-[1300px] will-change-transform"
-          style={{ y: carTranslateY, margin: '40px auto 60px', position: 'relative' }}
+          style={{ y: carTranslateY, margin: '24px auto 40px', position: 'relative', maxHeight: '46svh' }}
         >
           <div
             className="pointer-events-none absolute"
@@ -300,19 +303,19 @@ export function Atelier() {
               background: 'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(181,51,25,0.10), transparent 70%)',
             }}
           />
-          <WireframeCar progress={reveal} />
+          <WireframeCar progress={prefersReducedMotion ? 1 : reveal} />
         </motion.div>
 
         {/* Manifest text */}
         <p
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(28px, 3.4vw, 56px)',
+            fontSize: 'clamp(20px, 4.4vw, 52px)',
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             fontWeight: 400,
             maxWidth: 1200,
-            margin: '40px 0 80px',
+            margin: '32px 0 60px',
           }}
         >
           {words.map((w, i) => (
@@ -322,7 +325,7 @@ export function Atelier() {
               >
                 <span
                   style={{
-                    transform: seen ? 'translateY(0)' : 'translateY(102%)',
+                    transform: effectiveSeen ? 'translateY(0)' : 'translateY(102%)',
                     transitionDelay: `${i * 0.035}s`,
                   }}
                 >
