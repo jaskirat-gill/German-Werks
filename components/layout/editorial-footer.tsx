@@ -58,7 +58,7 @@ export function EditorialFooter() {
 
       {/* Grid */}
       <motion.div
-        className="grid grid-cols-1 gap-8 border-t py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-8 border-t py-10 sm:grid-cols-2 sm:gap-10"
         style={{ borderColor: 'rgba(255,255,255,0.12)', y: gridY, opacity: gridOpacity }}
       >
         <div>
@@ -73,33 +73,9 @@ export function EditorialFooter() {
           </ul>
         </div>
         <div>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 500, opacity: 0.55, marginBottom: 16 }}>Werks</h4>
+          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 500, opacity: 0.55, marginBottom: 16 }}>Contact</h4>
           <ul className="flex flex-col gap-2.5" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.04em' }}>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">About</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Journal</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Press</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Installer Network</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Careers</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 500, opacity: 0.55, marginBottom: 16 }}>Support</h4>
-          <ul className="flex flex-col gap-2.5" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.04em' }}>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Fitment Guide</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Shipping</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Returns</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">Warranty</li>
-            <li className="cursor-pointer transition-opacity hover:opacity-60">FAQ</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '10.5px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 500, opacity: 0.55, marginBottom: 16 }}>Showroom</h4>
-          <ul className="flex flex-col gap-2.5" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.04em' }}>
-            <li>1247 Boundary Rd.</li>
-            <li>Vancouver, BC</li>
-            <li>+1 (604) 555 0142</li>
-            <li>hello@germanwerks.ca</li>
-            <li>Mon–Sat&nbsp;&nbsp;10:00–18:00</li>
+            <li><a href="mailto:germanwerks604@gmail.com" className="transition-opacity hover:opacity-60">germanwerks604@gmail.com</a></li>
           </ul>
         </div>
       </motion.div>
