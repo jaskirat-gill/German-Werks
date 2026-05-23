@@ -2,7 +2,6 @@ import { PageTransition } from "components/animations/page-transition";
 import { CartProvider } from "components/cart/cart-context";
 import { EditorialFooter } from "components/layout/editorial-footer";
 import { EditorialNavbar } from "components/layout/editorial-navbar";
-import { WelcomeToast } from "components/welcome-toast";
 import { Bodoni_Moda, JetBrains_Mono } from "next/font/google";
 import { getCart } from "lib/shopify";
 import { ReactNode } from "react";
@@ -56,7 +55,6 @@ export default async function RootLayout({
             </PageTransition>
             <EditorialFooter />
             <Toaster closeButton />
-            <WelcomeToast />
           </main>
         </CartProvider>
       </body>
