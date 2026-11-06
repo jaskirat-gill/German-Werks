@@ -1,40 +1,72 @@
 {
+  "name": "germanwerks",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "pnpm run generate:importmap && cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx cms/seed.ts",
+    "stripe:tax-rates": "tsx scripts/stripe-tax-rates.ts",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
-    "test": "pnpm prettier:check"
+    "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@payloadcms/db-mongodb": "3.77.0",
+    "@payloadcms/email-resend": "3.77.0",
+    "@payloadcms/next": "3.77.0",
+    "@payloadcms/richtext-lexical": "3.77.0",
+    "@payloadcms/ui": "3.77.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "clsx": "^2.1.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.4.7",
     "framer-motion": "^12.38.0",
     "geist": "^1.3.1",
+    "graphql": "^16.8.1",
     "gsap": "^3.15.0",
-    "next": "15.6.0-canary.60",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "next": "15.4.11",
+    "payload": "3.77.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "sharp": "0.34.2",
     "sonner": "^2.0.1",
+    "stripe": "^18.5.0",
     "three": "^0.184.0"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/postcss": "^4.0.14",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "22.13.10",
-    "@types/react": "19.0.12",
-    "@types/react-dom": "19.0.4",
+    "@types/node": "22.19.9",
+    "@types/react": "19.2.9",
+    "@types/react-dom": "19.2.3",
     "@types/three": "^0.184.1",
     "postcss": "^8.5.3",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.0.14",
-    "typescript": "5.8.2"
+    "tsx": "4.21.0",
+    "typescript": "5.7.3",
+    "vite-tsconfig-paths": "6.0.5",
+    "vitest": "4.0.18"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0",
+    "pnpm": "^9 || ^10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "unrs-resolver"
+    ]
   }
 }
