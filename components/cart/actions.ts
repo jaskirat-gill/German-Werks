@@ -1,16 +1,20 @@
 "use server";
 
-import { TAGS } from "lib/constants";
 import {
   addToCart,
   createCart,
   getCart,
   removeFromCart,
   updateCart,
-} from "lib/shopify";
-import { updateTag } from "next/cache";
+} from "lib/commerce";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+
+const CART_COOKIE = "cartId";
+
+function refreshCart() {
+  revalidatePath("/", "layout");
+}
 
 export async function addItem(
   prevState: any,
@@ -21,8 +25,9 @@ export async function addItem(
   }
 
   try {
+    if (!(await getCart())) await createCartAndSetCookie();
     await addToCart([{ merchandiseId: selectedVariantId, quantity: 1 }]);
-    updateTag(TAGS.cart);
+    refreshCart();
   } catch (e) {
     return "Error adding item to cart";
   }
@@ -42,7 +47,7 @@ export async function removeItem(prevState: any, merchandiseId: string) {
 
     if (lineItem && lineItem.id) {
       await removeFromCart([lineItem.id]);
-      updateTag(TAGS.cart);
+      refreshCart();
     } else {
       return "Item not found in cart";
     }
@@ -88,19 +93,24 @@ export async function updateItemQuantity(
       await addToCart([{ merchandiseId, quantity }]);
     }
 
-    updateTag(TAGS.cart);
+    refreshCart();
   } catch (e) {
     console.error(e);
     return "Error updating item quantity";
   }
 }
 
-export async function redirectToCheckout() {
-  let cart = await getCart();
-  redirect(cart!.checkoutUrl);
+export async function createCartAndSetCookie() {
+  const cart = await createCart();
+  (await cookies()).set(CART_COOKIE, cart.id!, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+  });
 }
 
-export async function createCartAndSetCookie() {
-  let cart = await createCart();
-  (await cookies()).set("cartId", cart.id!);
+export async function redirectToCheckout() {
+  throw new Error("Checkout is not configured");
 }

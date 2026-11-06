@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import type { Collection } from 'lib/shopify/types';
+import type { Collection } from 'lib/commerce/types';
 import { sorting, defaultSort } from 'lib/constants';
 
 export function FilterBar({

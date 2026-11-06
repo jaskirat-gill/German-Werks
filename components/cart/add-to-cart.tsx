@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { addItem } from "components/cart/actions";
 import Price from "components/price";
-import { Product, ProductVariant } from "lib/shopify/types";
+import { Product, ProductVariant } from "lib/commerce/types";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { useCart } from "./cart-context";

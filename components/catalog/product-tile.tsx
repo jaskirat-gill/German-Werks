@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Product } from 'lib/shopify/types';
+import type { Product } from 'lib/commerce/types';
 import Price from 'components/price';
 
 function volNumberFor(product: Product): string | null {

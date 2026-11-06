@@ -5,7 +5,7 @@ import type {
   CartItem,
   Product,
   ProductVariant,
-} from "lib/shopify/types";
+} from "lib/commerce/types";
 import React, {
   createContext,
   use,
@@ -104,7 +104,7 @@ function updateCartTotals(
     (sum, item) => sum + Number(item.cost.totalAmount.amount),
     0,
   );
-  const currencyCode = lines[0]?.cost.totalAmount.currencyCode ?? "USD";
+  const currencyCode = lines[0]?.cost.totalAmount.currencyCode ?? "CAD";
 
   return {
     totalQuantity,
@@ -119,13 +119,12 @@ function updateCartTotals(
 function createEmptyCart(): Cart {
   return {
     id: undefined,
-    checkoutUrl: "",
     totalQuantity: 0,
     lines: [],
     cost: {
-      subtotalAmount: { amount: "0", currencyCode: "USD" },
-      totalAmount: { amount: "0", currencyCode: "USD" },
-      totalTaxAmount: { amount: "0", currencyCode: "USD" },
+      subtotalAmount: { amount: "0", currencyCode: "CAD" },
+      totalAmount: { amount: "0", currencyCode: "CAD" },
+      totalTaxAmount: { amount: "0", currencyCode: "CAD" },
     },
   };
 }

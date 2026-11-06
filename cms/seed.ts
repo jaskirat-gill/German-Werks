@@ -30,11 +30,13 @@ async function upload(filePath: string, alt: string) {
 
 const collections = Object.fromEntries(
   await Promise.all(
-    [
-      ["body-aero", "Body & Aero", "Aero-driven body components developed in the wind tunnel and finished by hand."],
-      ["carbon-fibre", "Carbon Fibre", "Pre-preg carbon fibre pieces, autoclave cured and clear coated."],
-      ["performance", "Performance", "Engine, intake and exhaust upgrades for road and track."],
-    ].map(async ([handle, title, description]) => {
+    (
+      [
+        ["body-aero", "Body & Aero", "Aero-driven body components developed in the wind tunnel and finished by hand."],
+        ["carbon-fibre", "Carbon Fibre", "Pre-preg carbon fibre pieces, autoclave cured and clear coated."],
+        ["performance", "Performance", "Engine, intake and exhaust upgrades for road and track."],
+      ] as const
+    ).map(async ([handle, title, description]) => {
       const doc = await payload.create({ collection: "collections", data: { handle, title, description, seo: { title, description } } });
       return [handle, doc.id] as const;
     }),

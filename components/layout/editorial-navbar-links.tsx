@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { Menu } from 'lib/shopify/types';
+import type { Menu } from 'lib/commerce/types';
 
 type Item = { title: string; path: string };
 

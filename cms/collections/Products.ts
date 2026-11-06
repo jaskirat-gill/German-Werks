@@ -44,6 +44,7 @@ export const Products: CollectionConfig = {
     {
       name: "images",
       type: "array",
+      minRows: 1,
       fields: [{ name: "image", type: "upload", relationTo: "media", required: true }],
     },
     { name: "tags", type: "text", hasMany: true },

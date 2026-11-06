@@ -1,5 +1,5 @@
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct } from 'lib/shopify';
+import { getProduct } from 'lib/commerce';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Pdp } from 'components/product/pdp';

@@ -1,5 +1,5 @@
-import { getCollections } from 'lib/shopify';
-import type { Product } from 'lib/shopify/types';
+import { getCollections } from 'lib/commerce';
+import type { Product } from 'lib/commerce/types';
 import { ProductTile } from './product-tile';
 import { FilterBar } from './filter-bar';
 import Link from 'next/link';

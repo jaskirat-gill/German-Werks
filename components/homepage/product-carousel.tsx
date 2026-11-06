@@ -1,5 +1,5 @@
 import { ScrollReveal } from "components/animations/scroll-reveal";
-import { getCollectionProducts } from "lib/shopify";
+import { getCollectionProducts } from "lib/commerce";
 import { GridTileImage } from "components/grid/tile";
 import Link from "next/link";
 

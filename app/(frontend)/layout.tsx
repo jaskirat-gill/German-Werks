@@ -3,7 +3,7 @@ import { CartProvider } from "components/cart/cart-context";
 import { EditorialFooter } from "components/layout/editorial-footer";
 import { EditorialNavbar } from "components/layout/editorial-navbar";
 import { Bodoni_Moda, JetBrains_Mono } from "next/font/google";
-import { getCart } from "lib/shopify";
+import { getCart } from "lib/commerce";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";

@@ -1,6 +1,6 @@
 import { Catalog } from 'components/catalog/catalog';
 import { defaultSort, sorting } from 'lib/constants';
-import { getProducts } from 'lib/shopify';
+import { getProducts } from 'lib/commerce';
 
 export const metadata = {
   title: 'Catalog',
