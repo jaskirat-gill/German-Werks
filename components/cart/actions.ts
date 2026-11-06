@@ -7,8 +7,10 @@ import {
   removeFromCart,
   updateCart,
 } from "lib/commerce";
+import { createCheckoutSession } from "lib/commerce/create-session";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const CART_COOKIE = "cartId";
 
@@ -111,6 +113,24 @@ export async function createCartAndSetCookie() {
   });
 }
 
-export async function redirectToCheckout() {
-  throw new Error("Checkout is not configured");
+export async function redirectToCheckout(
+  prevState?: string | null
+): Promise<string | null> {
+  const cartId = (await cookies()).get(CART_COOKIE)?.value;
+  let url: string;
+
+  try {
+    if (!cartId) throw new Error("Cart is empty");
+    url = await createCheckoutSession(cartId);
+  } catch (e) {
+    console.error("Checkout failed:", e);
+    return "Checkout is unavailable right now. Please try again shortly.";
+  }
+
+  redirect(url);
+}
+
+export async function clearCartCookie() {
+  (await cookies()).delete(CART_COOKIE);
+  refreshCart();
 }

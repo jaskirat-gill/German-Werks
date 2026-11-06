@@ -9,7 +9,7 @@ import { DEFAULT_OPTION } from "lib/constants";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 import { useCart } from "./cart-context";
@@ -23,6 +23,10 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const { cart, updateCartItem } = useCart();
+  const [checkoutError, checkoutAction] = useActionState(
+    redirectToCheckout,
+    null,
+  );
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
@@ -215,8 +219,13 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
+                  <form action={checkoutAction}>
                     <CheckoutButton />
+                    {checkoutError ? (
+                      <p className="mt-2 text-center text-sm text-red-400">
+                        {checkoutError}
+                      </p>
+                    ) : null}
                   </form>
                 </div>
               )}
