@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { sendOrderShippedEmail } from "../../lib/commerce/order-emails";
 import { formatCents } from "../formatMoney";
 
 const authenticated = ({ req }: { req: { user?: unknown } }) => Boolean(req.user);
@@ -9,6 +10,28 @@ export const Orders: CollectionConfig = {
   admin: {
     useAsTitle: "email",
     defaultColumns: ["createdAt", "name", "email", "total", "status"],
+  },
+  hooks: {
+    beforeChange: [
+      ({ data, originalDoc, operation }) => {
+        if (operation === "update" && data.status === "shipped" && originalDoc?.status !== "shipped") {
+          data.shippedAt = new Date().toISOString();
+        }
+        return data;
+      },
+    ],
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (operation === "update" && doc.status === "shipped" && previousDoc?.status !== "shipped") {
+          try {
+            await sendOrderShippedEmail(req.payload, doc);
+          } catch (error) {
+            req.payload.logger.error({ err: error, msg: "Shipped email failed" });
+          }
+        }
+        return doc;
+      },
+    ],
   },
   access: { create: denied, read: authenticated, update: authenticated, delete: authenticated },
   fields: [

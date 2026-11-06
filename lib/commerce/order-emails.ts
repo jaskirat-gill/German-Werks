@@ -1,5 +1,5 @@
 import type { Order } from "cms/payload-types";
-import { formatCents } from "cms/formatMoney";
+import { formatCents } from "../../cms/formatMoney";
 import type { Payload } from "payload";
 
 const escapeHtml = (value: string) =>
