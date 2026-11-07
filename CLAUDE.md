@@ -9,6 +9,8 @@ Storefront for German Werks. **Payload CMS 3 + Next.js 15** in one app: storefro
 - `lib/commerce/` storefront data layer (products, cart, checkout, fulfilment)
 - `scripts/stripe-tax-rates.ts` creates the Canadian tax rates in Stripe
 
+Payload coding rules are in `AGENTS.md` (shared with UEForged). Its examples use `src/`; here Payload code lives in `cms/`.
+
 ## Local dev
 
 ```bash
@@ -25,6 +27,40 @@ Tests: `pnpm test` (uses the throwaway database `germanwerks_test` on local mong
 ## Content
 
 Everything is edited in `/admin`: Products (variants, prices in cents, stock), Collections, Pages, Media, and the globals Site Settings (navbar/footer menus, contact email that receives order notifications) and Shipping Settings (flat-rate options offered at checkout). A product is sellable while any variant has stock; stock is decremented when an order is paid.
+
+## Orders
+
+## Updating content programmatically (REST API)
+
+Use this for bulk work (e.g. a spreadsheet of products). Everyday edits are easier in `/admin`. Auth is a Payload API key:
+
+1. In `/admin`, open your user, check **Enable API Key**, copy the key.
+2. Send it on every request: `Authorization: users API-Key <key>`
+
+Upload the image first, then reference its id:
+
+```bash
+curl -s -X POST "$SITE/api/media" \
+  -H "Authorization: users API-Key $KEY" \
+  -F file=@hood.jpg \
+  -F '_payload={"alt":"Dry carbon hood, three-quarter view"}'
+# response contains doc.id
+
+curl -s -X POST "$SITE/api/products" \
+  -H "Authorization: users API-Key $KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Dry Carbon Hood","collections":["<collection-id>"],
+       "images":[{"image":"<media-id>"}],
+       "options":[{"name":"Finish","values":["Gloss","Matte"]}],
+       "variants":[
+         {"title":"Gloss","selectedOptions":[{"name":"Finish","value":"Gloss"}],"priceCents":249900,"sku":"GW-HOOD-G","stock":3},
+         {"title":"Matte","selectedOptions":[{"name":"Finish","value":"Matte"}],"priceCents":259900,"sku":"GW-HOOD-M","stock":2}]}'
+```
+
+- **products**: `title`*, `handle` (generated from title when empty), `description` (rich text, easiest in admin), `images: [{image}]`, `tags`, `featured`, `collections` (ids, `GET /api/collections`), `seo {title, description}`, `options`, `variants`* (`priceCents` is CAD cents: $2,499.00 = 249900; `stock` required). `availableForSale`, `minPriceCents`, `maxPriceCents` are derived; don't send them.
+- **collections**: `title`*, `handle`, `description`, `image`
+- **globals**: `/api/globals/site-settings` (menus, contact email), `/api/globals/shipping-settings` (flat-rate options)
+- Orders are created only by Stripe checkout; never create them by hand.
 
 ## Orders
 
@@ -49,6 +85,7 @@ Fulfilment is idempotent and runs from both the webhook and the `/order/{session
 
 ## Production (shared UEForged droplet)
 
+- Server: DigitalOcean droplet shared with UEForged (DO team "UEForged"), reserved IP `129.212.166.116`. UEForged runs there as PM2 app `ue-forged` on port 3000.
 - App: `/var/www/germanwerks`, PM2 app `germanwerks` on port 3001 (UEForged keeps 3000), `max_memory_restart` 600M
 - Database: same mongod as UEForged, separate database `germanwerks`: `DATABASE_URL=mongodb://127.0.0.1:27017/germanwerks`
 - Media: `/var/www/germanwerks/media`, not in git. Back it up together with `mongodump`.
@@ -57,9 +94,9 @@ Fulfilment is idempotent and runs from both the webhook and the `/order/{session
 First-time setup on the droplet:
 
 ```bash
-git clone <repo> /var/www/germanwerks && cd /var/www/germanwerks
+git clone git@github.com:jaskirat-gill/German-Werks.git /var/www/germanwerks && cd /var/www/germanwerks
 cp .env.example .env && nano .env
-pnpm install --frozen-lockfile && pnpm seed   # seed only on a fresh database
+pnpm install --frozen-lockfile && pnpm seed   # fresh database only; delete the sample products in /admin before launch, keep the menus and shipping options
 pm2 start ecosystem.config.cjs && pm2 save
 ```
 
@@ -87,8 +124,8 @@ Keep `client_max_body_size` (admin uploads break without it). The Stripe webhook
 The droplet is small, so build locally and ship the build:
 
 ```bash
-pnpm build && rsync -az --delete .next/ root@<droplet>:/var/www/germanwerks/.next/
-ssh root@<droplet> 'SKIP_BUILD=1 bash /var/www/germanwerks/deploy.sh'
+pnpm build && rsync -az --delete .next/ root@129.212.166.116:/var/www/germanwerks/.next/
+ssh root@129.212.166.116 'SKIP_BUILD=1 bash /var/www/germanwerks/deploy.sh'
 ```
 
 `deploy.sh` alone does `git pull`, `pnpm install`, `pnpm build`, then restarts PM2. Content changes need no deploy.
