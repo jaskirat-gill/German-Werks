@@ -9,7 +9,7 @@ import { DEFAULT_OPTION } from "lib/constants";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 import { useCart } from "./cart-context";
@@ -23,6 +23,10 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const { cart, updateCartItem } = useCart();
+  const [checkoutError, checkoutAction] = useActionState(
+    redirectToCheckout,
+    null,
+  );
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
@@ -196,11 +200,7 @@ export default function CartModal() {
                   <div className="py-4 text-sm text-gw-muted">
                     <div className="mb-3 flex items-center justify-between border-b border-gw-charcoal pb-1">
                       <p>Taxes</p>
-                      <Price
-                        className="text-right text-base text-gw-text"
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
-                      />
+                      <p className="text-right">Calculated at checkout</p>
                     </div>
                     <div className="mb-3 flex items-center justify-between border-b border-gw-charcoal pb-1 pt-1">
                       <p>Shipping</p>
@@ -215,8 +215,13 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
+                  <form action={checkoutAction}>
                     <CheckoutButton />
+                    {checkoutError ? (
+                      <p className="mt-2 text-center text-sm text-red-400">
+                        {checkoutError}
+                      </p>
+                    ) : null}
                   </form>
                 </div>
               )}

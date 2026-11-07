@@ -1,7 +1,7 @@
 import { ScrollReveal } from "components/animations/scroll-reveal";
 import Grid from "components/grid";
 import { GridTileImage } from "components/grid/tile";
-import { Product } from "lib/shopify/types";
+import { Product } from "lib/commerce/types";
 import Link from "next/link";
 
 export default function ProductGridItems({

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getProductRecommendations } from 'lib/shopify';
+import { getProductRecommendations } from 'lib/commerce';
 import { ProductTile } from 'components/catalog/product-tile';
 
 function collectionHandleFor(tags: string[] | undefined): string | null {

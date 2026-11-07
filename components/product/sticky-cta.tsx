@@ -1,6 +1,6 @@
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
-import type { Product } from 'lib/shopify/types';
+import type { Product } from 'lib/commerce/types';
 
 export function StickyCta({ product }: { product: Product }) {
   return (

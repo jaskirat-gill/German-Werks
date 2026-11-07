@@ -1,6 +1,6 @@
 import { ProductParallax } from "components/3d/product-parallax";
 import { ScrollReveal } from "components/animations/scroll-reveal";
-import { getCollectionProducts } from "lib/shopify";
+import { getCollectionProducts } from "lib/commerce";
 import Link from "next/link";
 
 export async function FeaturedSpotlight() {

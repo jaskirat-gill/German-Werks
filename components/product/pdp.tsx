@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import type { Image, Product } from 'lib/shopify/types';
+import type { Image, Product } from 'lib/commerce/types';
 import { PdpGallery } from './pdp-gallery';
 import { ProductDescription } from './product-description';
 

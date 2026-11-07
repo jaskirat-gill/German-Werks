@@ -1,0 +1,27 @@
+import { baseUrl } from "lib/utils";
+import { getStripe } from "lib/stripe";
+import { buildLineItems, buildShippingOptions, parseTaxRateIds } from "./checkout";
+import { getClient } from "./payload";
+
+export async function createCheckoutSession(cartId: string) {
+  const payload = await getClient();
+  const cart = await payload.findByID({ collection: "carts", id: cartId, depth: 1 });
+  const lineItems = buildLineItems(cart.lines ?? [], parseTaxRateIds());
+  if (!lineItems.length) throw new Error("Cart is empty");
+
+  const shipping = await payload.findGlobal({ slug: "shipping-settings" });
+  const shippingOptions = buildShippingOptions(shipping.options);
+
+  const session = await getStripe().checkout.sessions.create({
+    mode: "payment",
+    line_items: lineItems,
+    shipping_address_collection: { allowed_countries: ["CA"] },
+    ...(shippingOptions.length ? { shipping_options: shippingOptions } : {}),
+    metadata: { cartId },
+    success_url: `${baseUrl}/order/{CHECKOUT_SESSION_ID}`,
+    cancel_url: `${baseUrl}/search`,
+  });
+
+  if (!session.url) throw new Error("Stripe returned no checkout URL");
+  return session.url;
+}

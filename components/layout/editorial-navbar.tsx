@@ -1,6 +1,6 @@
 import CartModal from 'components/cart/modal';
 import { GWCrest } from 'components/layout/gw-crest';
-import { getMenu } from 'lib/shopify';
+import { getMenu } from 'lib/commerce';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { EditorialNavbarLinks } from './editorial-navbar-links';
@@ -8,7 +8,7 @@ import MobileMenu from './navbar/mobile-menu';
 import Search, { SearchSkeleton } from './navbar/search';
 
 export async function EditorialNavbar() {
-  const menu = await getMenu('next-js-frontend-header-menu');
+  const menu = await getMenu('navbar');
 
   return (
     <nav
