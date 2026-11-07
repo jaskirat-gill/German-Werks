@@ -8,6 +8,7 @@ import {
   updateCart,
 } from "lib/commerce";
 import { createCheckoutSession } from "lib/commerce/create-session";
+import { findProvince } from "lib/commerce/provinces";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -114,14 +115,18 @@ export async function createCartAndSetCookie() {
 }
 
 export async function redirectToCheckout(
-  prevState?: string | null
+  prevState: string | null,
+  formData: FormData
 ): Promise<string | null> {
+  const province = findProvince(formData.get("province"));
+  if (!province) return "Select the province you are shipping to.";
+
   const cartId = (await cookies()).get(CART_COOKIE)?.value;
   let url: string;
 
   try {
     if (!cartId) throw new Error("Cart is empty");
-    url = await createCheckoutSession(cartId);
+    url = await createCheckoutSession(cartId, province.code);
   } catch (e) {
     console.error("Checkout failed:", e);
     return "Checkout is unavailable right now. Please try again shortly.";

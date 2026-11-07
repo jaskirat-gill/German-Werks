@@ -6,7 +6,7 @@ type CartLine = NonNullable<Cart["lines"]>[number];
 
 export function buildLineItems(
   lines: CartLine[],
-  taxRateIds: string[],
+  taxRateId: string,
 ): Stripe.Checkout.SessionCreateParams.LineItem[] {
   const items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
@@ -36,7 +36,7 @@ export function buildLineItems(
           },
         },
       },
-      ...(taxRateIds.length ? { dynamic_tax_rates: taxRateIds } : {}),
+      tax_rates: [taxRateId],
     });
   }
 
@@ -55,5 +55,9 @@ export function buildShippingOptions(
   }));
 }
 
-export const parseTaxRateIds = (value = process.env.STRIPE_TAX_RATE_IDS) =>
-  (value ?? "").split(",").map((id) => id.trim()).filter(Boolean);
+export async function findTaxRateId(stripe: Pick<Stripe, "taxRates">, province: string) {
+  for await (const rate of stripe.taxRates.list({ active: true, limit: 100 })) {
+    if (rate.metadata?.germanwerks_province === province) return rate.id;
+  }
+  throw new Error(`No active Stripe tax rate for ${province}; run pnpm stripe:tax-rates`);
+}

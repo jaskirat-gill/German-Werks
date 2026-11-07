@@ -62,6 +62,7 @@ export async function fulfilCheckoutSession(
   const shipping = session.collected_information?.shipping_details;
   const address = shipping?.address;
   const paymentIntent = session.payment_intent;
+  const taxProvince = session.metadata?.province ?? "";
 
   const lines = (session.line_items?.data ?? []).map((item) => {
     const product = item.price?.product;
@@ -102,6 +103,8 @@ export async function fulfilCheckoutSession(
         totalCents: session.amount_total ?? 0,
         currency: session.currency ?? "cad",
         status: "paid",
+        taxProvince,
+        taxMismatch: Boolean(taxProvince && address?.state && address.state !== taxProvince),
       },
     });
   } catch (error) {
