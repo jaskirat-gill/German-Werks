@@ -195,7 +195,7 @@ export function reshapeCart(cart: PayloadCart): Cart {
   };
 }
 
-async function loadCart(depth: 0 | 1) {
+async function loadCart(depth: 0 | 2) {
   const cartId = await readCartId();
   if (!cartId) return undefined;
   const payload = await getClient();
@@ -285,6 +285,6 @@ export async function updateCart(
 }
 
 export async function getCart(): Promise<Cart | undefined> {
-  const cart = await loadCart(1);
+  const cart = await loadCart(2);
   return cart ? reshapeCart(cart) : undefined;
 }
