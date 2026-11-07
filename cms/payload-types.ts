@@ -318,6 +318,14 @@ export interface Order {
   id: string;
   stripeSessionId: string;
   stripePaymentIntentId?: string | null;
+  /**
+   * Province the customer picked; its tax rate was charged
+   */
+  taxProvince?: string | null;
+  /**
+   * Shipped to a different province than the one taxed. Check the tax charged.
+   */
+  taxMismatch?: boolean | null;
   email: string;
   name?: string | null;
   shippingAddress?: {
@@ -598,6 +606,8 @@ export interface CartsSelect<T extends boolean = true> {
 export interface OrdersSelect<T extends boolean = true> {
   stripeSessionId?: T;
   stripePaymentIntentId?: T;
+  taxProvince?: T;
+  taxMismatch?: T;
   email?: T;
   name?: T;
   shippingAddress?:

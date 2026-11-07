@@ -38,6 +38,7 @@ export function completedSession(options: {
   productId: string;
   variantId: string;
   cartId?: string;
+  province?: string;
   quantity: number;
   unitAmount: number;
 }): Stripe.Checkout.Session {
@@ -56,7 +57,10 @@ export function completedSession(options: {
         address: { line1: "1 Main St", line2: null, city: "Vancouver", state: "BC", postal_code: "V6B 1A1", country: "CA" },
       },
     },
-    metadata: options.cartId ? { cartId: options.cartId } : {},
+    metadata: {
+      ...(options.cartId ? { cartId: options.cartId } : {}),
+      ...(options.province ? { province: options.province } : {}),
+    },
     line_items: {
       data: [
         {

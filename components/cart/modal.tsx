@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import LoadingDots from "components/loading-dots";
 import Price from "components/price";
+import { findProvince, PROVINCES } from "lib/commerce/provinces";
 import { DEFAULT_OPTION } from "lib/constants";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
@@ -28,6 +29,10 @@ export default function CartModal() {
     null,
   );
   const [isOpen, setIsOpen] = useState(false);
+  const [provinceCode, setProvinceCode] = useState("");
+  const province = findProvince(provinceCode);
+  const subtotal = Number(cart?.cost.totalAmount.amount ?? 0);
+  const tax = province ? Math.round(subtotal * province.percentage) / 100 : 0;
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
@@ -134,19 +139,23 @@ export default function CartModal() {
                               </div>
                               <div className="flex flex-row">
                                 <div className="relative h-16 w-16 overflow-hidden rounded-md border border-gw-charcoal bg-gw-dark">
-                                  <Image
-                                    className="h-full w-full object-cover"
-                                    width={64}
-                                    height={64}
-                                    alt={
-                                      item.merchandise.product.featuredImage
-                                        .altText ||
-                                      item.merchandise.product.title
-                                    }
-                                    src={
-                                      item.merchandise.product.featuredImage.url
-                                    }
-                                  />
+                                  {item.merchandise.product.featuredImage
+                                    .url ? (
+                                    <Image
+                                      className="h-full w-full object-cover"
+                                      width={64}
+                                      height={64}
+                                      alt={
+                                        item.merchandise.product.featuredImage
+                                          .altText ||
+                                        item.merchandise.product.title
+                                      }
+                                      src={
+                                        item.merchandise.product.featuredImage
+                                          .url
+                                      }
+                                    />
+                                  ) : null}
                                 </div>
                                 <Link
                                   href={merchandiseUrl}
@@ -199,8 +208,21 @@ export default function CartModal() {
                   </ul>
                   <div className="py-4 text-sm text-gw-muted">
                     <div className="mb-3 flex items-center justify-between border-b border-gw-charcoal pb-1">
-                      <p>Taxes</p>
-                      <p className="text-right">Calculated at checkout</p>
+                      <p>
+                        Taxes
+                        {province
+                          ? ` · ${province.displayName} ${province.percentage}%`
+                          : ""}
+                      </p>
+                      {province ? (
+                        <Price
+                          className="text-right text-base text-gw-text"
+                          amount={tax.toFixed(2)}
+                          currencyCode={cart.cost.totalAmount.currencyCode}
+                        />
+                      ) : (
+                        <p className="text-right">Select your province</p>
+                      )}
                     </div>
                     <div className="mb-3 flex items-center justify-between border-b border-gw-charcoal pb-1 pt-1">
                       <p>Shipping</p>
@@ -210,12 +232,31 @@ export default function CartModal() {
                       <p>Total</p>
                       <Price
                         className="text-right text-base text-gw-text"
-                        amount={cart.cost.totalAmount.amount}
+                        amount={(subtotal + tax).toFixed(2)}
                         currencyCode={cart.cost.totalAmount.currencyCode}
                       />
                     </div>
                   </div>
                   <form action={checkoutAction}>
+                    <label className="mb-3 block text-sm text-gw-muted">
+                      <span className="mb-1 block">Shipping to</span>
+                      <select
+                        name="province"
+                        required
+                        value={provinceCode}
+                        onChange={(e) => setProvinceCode(e.target.value)}
+                        className="w-full rounded-md border border-gw-charcoal bg-transparent p-2.5 text-gw-text"
+                      >
+                        <option value="" disabled>
+                          Select province
+                        </option>
+                        {PROVINCES.map((p) => (
+                          <option key={p.code} value={p.code} className="bg-black">
+                            {p.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
                     <CheckoutButton />
                     {checkoutError ? (
                       <p className="mt-2 text-center text-sm text-red-400">

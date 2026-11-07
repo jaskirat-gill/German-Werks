@@ -9,7 +9,7 @@ export const Orders: CollectionConfig = {
   slug: "orders",
   admin: {
     useAsTitle: "email",
-    defaultColumns: ["createdAt", "name", "email", "total", "status"],
+    defaultColumns: ["createdAt", "name", "email", "total", "status", "taxMismatch"],
   },
   hooks: {
     beforeChange: [
@@ -37,6 +37,13 @@ export const Orders: CollectionConfig = {
   fields: [
     { name: "stripeSessionId", type: "text", required: true, unique: true, index: true, admin: { readOnly: true } },
     { name: "stripePaymentIntentId", type: "text", admin: { readOnly: true } },
+    { name: "taxProvince", type: "text", admin: { readOnly: true, description: "Province the customer picked; its tax rate was charged" } },
+    {
+      name: "taxMismatch",
+      type: "checkbox",
+      defaultValue: false,
+      admin: { readOnly: true, description: "Shipped to a different province than the one taxed. Check the tax charged." },
+    },
     { name: "email", type: "email", required: true, admin: { readOnly: true } },
     { name: "name", type: "text", admin: { readOnly: true } },
     {
