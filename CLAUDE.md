@@ -94,7 +94,7 @@ Fulfilment is idempotent and runs from both the webhook and the `/order/{session
 First-time setup on the droplet:
 
 ```bash
-git clone git@github.com:jaskirat-gill/German-Werks.git /var/www/germanwerks && cd /var/www/germanwerks
+git clone https://github.com/jaskirat-gill/German-Werks.git /var/www/germanwerks && cd /var/www/germanwerks
 cp .env.example .env && nano .env
 pnpm install --frozen-lockfile && pnpm seed   # fresh database only; delete the sample products in /admin before launch, keep the menus and shipping options
 pm2 start ecosystem.config.cjs && pm2 save
