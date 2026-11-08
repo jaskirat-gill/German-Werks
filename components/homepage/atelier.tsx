@@ -5,14 +5,62 @@ import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import { GWCrest } from 'components/layout/gw-crest';
 
+const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
+
+function Wheel({ cx, cy, front, at }: { cx: number; cy: number; front?: boolean; at: (delay: number) => object }) {
+  const spokes = [];
+  for (let i = 0; i < 10; i++) {
+    for (const d of [-0.07, 0.07]) {
+      const a = (i / 10) * Math.PI * 2 + d;
+      const b = (i / 10) * Math.PI * 2 + d * 0.3;
+      spokes.push(
+        <line
+          key={`${i}${d}`}
+          x1={cx + Math.cos(b) * 13}
+          y1={cy + Math.sin(b) * 13}
+          x2={cx + Math.cos(a) * 59.5}
+          y2={cy + Math.sin(a) * 59.5}
+          opacity="0.55"
+          {...at(0.3)}
+        />,
+      );
+    }
+  }
+  const [a0, a1] = front ? [-2.55, -1.85] : [-0.95, -0.25];
+  const r = 51.3;
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r="78" {...at(0)} />
+      <circle cx={cx} cy={cy} r="62.6" opacity="0.75" {...at(0)} />
+      <circle cx={cx} cy={cy} r="47.2" opacity="0.18" {...at(0.3)} />
+      <circle cx={cx} cy={cy} r="10" {...at(0.3)} />
+      {spokes}
+      <path
+        d={`M ${cx + Math.cos(a0) * r} ${cy + Math.sin(a0) * r} A ${r} ${r} 0 0 1 ${cx + Math.cos(a1) * r} ${cy + Math.sin(a1) * r}`}
+        stroke="#b53319"
+        strokeWidth="2.4"
+        opacity="0.8"
+        {...at(0.55)}
+      />
+    </g>
+  );
+}
+
 function WireframeCar({ progress = 0 }: { progress: number }) {
+  const at = (delay: number) => ({
+    pathLength: 1,
+    strokeDasharray: 1,
+    strokeDashoffset: 1 - clamp01((progress - delay) / (1 - delay)),
+  });
+  const labels = 0.6 * clamp01((progress - 0.75) / 0.25);
+
   return (
     <svg viewBox="0 0 1200 440" className="block w-full" style={{ overflow: 'visible' }}>
       <defs>
         <linearGradient id="wcStroke" x1="0" x2="1">
           <stop offset="0" stopColor="#efeae2" stopOpacity="0.55" />
           <stop offset="0.5" stopColor="#efeae2" stopOpacity="1" />
-          <stop offset="1" stopColor="#efeae2" stopOpacity="0.4" />
+          <stop offset="1" stopColor="#efeae2" stopOpacity="0.45" />
         </linearGradient>
         <linearGradient id="wcAccent" x1="0" x2="1">
           <stop offset="0" stopColor="#b53319" stopOpacity="0.0" />
@@ -20,146 +68,71 @@ function WireframeCar({ progress = 0 }: { progress: number }) {
           <stop offset="1" stopColor="#b53319" stopOpacity="0.0" />
         </linearGradient>
       </defs>
-      <g
-        fill="none"
-        stroke="url(#wcStroke)"
-        strokeWidth="1.1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{ opacity: progress, transition: 'opacity 1.4s cubic-bezier(.18,.7,.2,1)' }}
-      >
-        {/* ground line */}
-        <line x1="40" y1="378" x2="1160" y2="378" stroke="url(#wcAccent)" strokeWidth="0.8" />
+      <g fill="none" stroke="url(#wcStroke)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="30" y1="378" x2="1200" y2="378" stroke="url(#wcAccent)" strokeWidth="0.8" {...at(0)} />
 
-        {/* main body silhouette — long, low coupe with fastback */}
-        <path d="M 80 340
-                 C 100 340 115 338 130 334
-                 L 180 318
-                 C 210 308 240 300 280 296
-                 L 360 288
-                 C 390 284 420 276 440 260
-                 L 490 228
-                 C 510 210 540 198 580 192
-                 L 680 188
-                 C 720 188 760 192 790 200
-                 L 860 224
-                 C 890 238 920 256 940 272
-                 L 1000 296
-                 C 1030 304 1060 312 1080 320
-                 L 1110 334
-                 C 1120 338 1125 342 1130 346
-                 L 1130 356
-                 L 1070 362" />
-        <path d="M 80 340 L 80 356 L 145 362" />
+        {/* body: rounded nose, long hood, arched roof, long sweep into a low trunk, tapered tail */}
+        <path
+          d="M 100 350 C 80 348 64 334 62 318 C 58 300 60 284 62 272 C 66 248 76 226 94 216
+             C 180 200 330 188 500 178 C 570 140 640 100 700 84 C 740 74 790 72 832 78
+             C 930 92 1010 126 1072 150 C 1104 158 1142 162 1170 164 L 1178 169
+             C 1187 186 1189 220 1183 254 C 1177 292 1164 324 1144 346 L 1136 350"
+          {...at(0)}
+        />
+        <path d="M 100 350 L 198 350 M 346 350 L 848 350 M 996 350 L 1136 350" {...at(0)} />
+        <path d="M 198 350 A 90 90 0 1 1 346 350" {...at(0)} />
+        <path d="M 848 350 A 90 90 0 1 1 996 350" {...at(0)} />
 
-        {/* roof / greenhouse — long sweeping fastback */}
-        <path d="M 440 260
-                 C 455 244 475 232 500 222
-                 L 590 208
-                 L 740 208
-                 C 770 212 800 222 830 240
-                 L 860 258" />
+        {/* shoulder, dropping line, sill sculpt, side skirt */}
+        <path d="M 362 210 C 520 200 600 196 700 192 C 880 186 1040 182 1176 188" opacity="0.5" {...at(0.3)} />
+        <path d="M 372 244 C 560 238 760 244 900 266" opacity="0.45" {...at(0.3)} />
+        <path d="M 360 324 C 560 318 700 316 840 318" opacity="0.3" {...at(0.3)} />
+        <path d="M 352 342 C 560 338 700 338 842 342" opacity="0.45" {...at(0.3)} />
 
-        {/* A-pillar — steep rake */}
-        <path d="M 448 256 L 504 224" />
+        {/* pillarless glass */}
+        <path d="M 522 182 L 706 94 C 742 84 792 84 828 90 C 900 102 962 132 1008 166 C 870 172 690 178 522 182 Z" {...at(0.3)} />
+        <path d="M 802 88 C 806 118 808 146 808 168" opacity="0.45" {...at(0.55)} />
 
-        {/* B-pillar — thin coupe pillar */}
-        <path d="M 648 210 L 648 278" opacity="0.4" />
+        {/* door, handle, mirror */}
+        <path d="M 526 186 C 530 246 532 302 536 350" opacity="0.4" {...at(0.55)} />
+        <path d="M 810 172 C 816 236 816 302 812 350" opacity="0.4" {...at(0.55)} />
+        <path d="M 750 200 L 782 198" {...at(0.55)} />
+        <path d="M 520 172 C 502 162 488 164 486 172 C 488 180 504 182 522 180" {...at(0.55)} />
 
-        {/* C-pillar / fastback slope */}
-        <path d="M 828 240 L 770 212" />
+        {/* front: headlight, intakes, splitter */}
+        <path d="M 70 232 C 108 220 150 208 194 204 L 190 214 C 152 218 112 228 76 242 Z" opacity="0.85" {...at(0.55)} />
+        <path d="M 68 300 C 90 306 116 308 142 308" opacity="0.5" {...at(0.55)} />
+        <path d="M 72 318 C 92 322 112 324 136 324" opacity="0.35" {...at(0.55)} />
+        <path d="M 56 354 L 150 356" stroke="url(#wcAccent)" {...at(0.55)} />
 
-        {/* belt-line — continuous sweep */}
-        <path d="M 455 264 L 850 256" />
+        {/* rear: trunk lip, tail-light, bumper, exhaust, diffuser */}
+        <path d="M 1118 160 L 1170 164 L 1178 169" stroke="url(#wcAccent)" {...at(0.55)} />
+        <path d="M 1096 178 C 1130 180 1160 184 1184 192" opacity="0.9" {...at(0.55)} />
+        <path d="M 1104 188 C 1134 190 1162 194 1185 202" opacity="0.5" {...at(0.55)} />
+        <path d="M 1000 286 C 1080 284 1140 282 1182 278" opacity="0.35" {...at(0.55)} />
+        <ellipse cx="1140" cy="338" rx="11" ry="5" opacity="0.6" {...at(0.55)} />
+        <path d="M 1050 354 L 1058 342 M 1070 354 L 1076 342 M 1090 354 L 1094 342" opacity="0.5" {...at(0.55)} />
 
-        {/* front glass */}
-        <path d="M 458 260 L 506 226 L 644 218 L 648 258 Z" />
+        <Wheel cx={272} cy={300} front at={at} />
+        <Wheel cx={922} cy={300} at={at} />
 
-        {/* rear glass — long coupe window */}
-        <path d="M 652 218 L 766 216 L 826 242 L 652 258 Z" />
-
-        {/* hood — long and low */}
-        <path d="M 280 296 L 360 286 L 430 276" />
-        <path d="M 180 316 L 230 306 L 280 298" opacity="0.7" />
-
-        {/* trunk / ducktail spoiler — subtle kick */}
-        <path d="M 860 256 L 900 266 L 948 280 L 990 296" />
-        <path d="M 938 274 L 948 270 L 958 274" strokeWidth="0.9" />
-
-        {/* lower sill — aggressive rocker */}
-        <path d="M 200 326 L 340 318 L 500 306 L 740 306 L 920 318 L 1080 330" opacity="0.55" />
-
-        {/* side intake / vent */}
-        <path d="M 380 302 L 420 296 L 440 300" opacity="0.5" />
-        <path d="M 384 306 L 418 300" opacity="0.35" />
-
-        {/* door seam */}
-        <path d="M 550 260 L 550 306" opacity="0.4" />
-
-        {/* mirror */}
-        <path d="M 508 248 L 476 244 L 476 256" />
-
-        {/* headlight — aggressive slant */}
-        <path d="M 138 322 Q 170 314 200 318" />
-        <path d="M 142 328 Q 168 322 196 326" opacity="0.5" />
-
-        {/* front badge */}
-        <circle cx="112" cy="336" r="4" stroke="url(#wcAccent)" fill="none" />
-
-        {/* tail-light — full width LED bar */}
-        <path d="M 1070 324 L 1110 338" />
-        <path d="M 1058 330 L 1100 346" opacity="0.55" />
-        <path d="M 1052 336 L 1094 350" opacity="0.35" />
-
-        {/* front wheel arch + wheel */}
-        <path d="M 210 340 A 62 62 0 0 1 335 340" />
-        <circle cx="272" cy="348" r="52" />
-        <circle cx="272" cy="348" r="35" opacity="0.7" />
-        <circle cx="272" cy="348" r="9" />
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => (
-          <line
-            key={`fs${k}`}
-            x1="272" y1="348"
-            x2={272 + Math.cos((k / 10) * Math.PI * 2) * 33}
-            y2={348 + Math.sin((k / 10) * Math.PI * 2) * 33}
-            opacity="0.55"
-          />
-        ))}
-
-        {/* rear wheel arch + wheel — wider */}
-        <path d="M 860 340 A 62 62 0 0 1 985 340" />
-        <circle cx="922" cy="348" r="52" />
-        <circle cx="922" cy="348" r="35" opacity="0.7" />
-        <circle cx="922" cy="348" r="9" />
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => (
-          <line
-            key={`rs${k}`}
-            x1="922" y1="348"
-            x2={922 + Math.cos((k / 10) * Math.PI * 2) * 33}
-            y2={348 + Math.sin((k / 10) * Math.PI * 2) * 33}
-            opacity="0.55"
-          />
-        ))}
-
-        {/* construction guide-lines */}
-        <line x1="272" y1="60" x2="272" y2="280" opacity="0.15" strokeDasharray="3 6" />
-        <line x1="922" y1="60" x2="922" y2="280" opacity="0.15" strokeDasharray="3 6" />
-        <line x1="40" y1="208" x2="1160" y2="208" opacity="0.12" strokeDasharray="3 6" />
-
-        {/* dimension brackets */}
-        <path d="M 80 408 L 1130 408" opacity="0.3" />
-        <path d="M 80 400 L 80 416 M 1130 400 L 1130 416" opacity="0.3" />
+        {/* construction guides and dimension bracket */}
+        <g opacity={clamp01(progress * 2)}>
+          <line x1="272" y1="40" x2="272" y2="196" opacity="0.15" strokeDasharray="3 6" />
+          <line x1="922" y1="40" x2="922" y2="86" opacity="0.15" strokeDasharray="3 6" />
+        </g>
+        <path d="M 62 408 L 1188 408 M 62 400 L 62 416 M 1188 400 L 1188 416" opacity="0.3" {...at(0.55)} />
       </g>
 
       {/* labels */}
-      <g fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#efeae2" opacity="0.6">
+      <g fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#efeae2" opacity={labels}>
         <text x="272" y="430" textAnchor="middle">F-AXLE</text>
         <text x="922" y="430" textAnchor="middle">R-AXLE</text>
         <text x="600" y="434" textAnchor="middle">WHEELBASE  ·  2850mm</text>
-        <text x="480" y="172" textAnchor="end">FR-LIP  /  WW-118 →</text>
-        <text x="740" y="172">← DUCKTAIL  /  WW-204</text>
-        <text x="1130" y="358" textAnchor="start" dx="6">DIFFUSER →</text>
-        <text x="80" y="358" textAnchor="end" dx="-6">← SPLITTER</text>
+        <text x="440" y="156" textAnchor="end">FR-LIP  /  WW-118 →</text>
+        <text x="1110" y="140">← DUCKTAIL  /  WW-204</text>
+        <text x="1196" y="356">DIFFUSER →</text>
+        <text x="48" y="356" textAnchor="end">← SPLITTER</text>
       </g>
 
       {/* watermark circles */}
@@ -203,7 +176,9 @@ export function Atelier() {
     return () => io.disconnect();
   }, []);
 
-  const prefersReducedMotion = useReducedMotion();
+  const reducedMotionSetting = useReducedMotion();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  useEffect(() => setPrefersReducedMotion(Boolean(reducedMotionSetting)), [reducedMotionSetting]);
 
   const reveal = Math.max(0, Math.min(1, (progress - 0.15) * 2.5));
   const effectiveSeen = prefersReducedMotion ? true : seen;
