@@ -93,7 +93,14 @@ Fulfilment is idempotent and runs from both the webhook and the `/order/{session
 - Media: `/var/www/germanwerks/media`, not in git. Back it up together with `mongodump`.
 - Env: `/var/www/germanwerks/.env`, never committed
 
-First-time setup on the droplet:
+Live since 2026-11-15:
+
+- Domain: `germanwerks.ca` DNS is managed in Squarespace (Google nameservers). `@` and `www` are A records to `129.212.166.116`. Resend's records (`resend._domainkey` TXT, `send` MX + TXT, `rsend` CNAME) are there too; don't delete them.
+- HTTPS: one Let's Encrypt certificate for both names, renewed automatically by certbot.
+- Stripe: the owner's live account (GermanWerks Auto Parts LTD). The 13 live tax rates exist; the live webhook points at `https://germanwerks.ca/stripe/webhook` for `checkout.session.completed`. An old disabled webhook to a Railway URL is unrelated; leave it.
+- Email: Resend domain `germanwerks.ca` is verified; the store sends as `German Werks <orders@germanwerks.ca>`.
+
+First-time setup on the droplet (already done; for rebuilding the server):
 
 ```bash
 git clone https://github.com/jaskirat-gill/German-Werks.git /var/www/germanwerks && cd /var/www/germanwerks
@@ -123,14 +130,17 @@ Keep `client_max_body_size` (admin uploads break without it). The Stripe webhook
 
 ## Deploying
 
-The droplet is small, so build locally and ship the build:
+Commit and push to `master`, then from a clean checkout of `master`:
 
 ```bash
-pnpm build && rsync -az --delete .next/ root@129.212.166.116:/var/www/germanwerks/.next/
-ssh root@129.212.166.116 'SKIP_BUILD=1 bash /var/www/germanwerks/deploy.sh'
+pnpm deploy:prod
 ```
 
-`deploy.sh` alone does `git pull`, `pnpm install`, `pnpm build`, then restarts PM2. Content changes need no deploy.
+It refuses unless you are on `master` with no local changes and level with `origin/master`, builds locally with `PAYLOAD_PUBLIC_SERVER_URL=https://germanwerks.ca`, ships `.next` (without its cache), then runs `deploy.sh` on the server with `SKIP_BUILD=1` (`git pull`, `pnpm install`, restart `germanwerks` only).
+
+Why not a plain `pnpm build` + rsync: the build bakes `PAYLOAD_PUBLIC_SERVER_URL` into the allowed image hosts, so a build with the local `.env` (localhost) breaks every product image in production; and the server pulls `master`, so a build of unpushed code would not match the source it runs. The droplet is small, so don't build on it.
+
+Content changes (products, prices, stock, menus, shipping rates) are done in `/admin` or the REST API and need no deploy.
 
 ## Cautions
 
