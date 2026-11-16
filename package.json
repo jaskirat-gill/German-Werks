@@ -13,7 +13,8 @@
     "stripe:tax-rates": "tsx scripts/stripe-tax-rates.ts",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
-    "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run"
+    "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run",
+    "deploy:prod": "bash scripts/deploy-prod.sh"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
